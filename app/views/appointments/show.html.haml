@@ -12,6 +12,8 @@
 		%p= @appointment.active		
 		%strong USER
 		%p= @appointment.user_id
+		%strong PROFILE
+		%p= @appointment.profile_id
 		.buttons
 			= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
 			= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"

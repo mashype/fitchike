@@ -31,6 +31,7 @@
 										%strong Gender:
 									%td= @profile.gender.gender 
 						=link_to "Review Me", new_profile_review_path(@profile)
+						=link_to "Edit My Record", edit_profile_path
 			.row
 				%table.table.table-hover
 					%thead
@@ -43,7 +44,21 @@
 							%tr
 								%td{class: "star-rating", dscore: review.rating}
 								%td= review.comment
-
+			.row
+				%table.table.table-hover
+					%thead
+						%tr
+							%th Title
+							%th Date
+							%th Active
+							%th{:colspan => "3"}
+					%tbody
+						- @appointments.each do |appointment|
+							%tr
+								%td= appointment.title
+								%td= appointment.date
+								%td= appointment.active
+								%td= link_to 'View', appointment_path(appointment)
 
 :javascript
 		$('.star-rating').raty({

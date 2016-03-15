@@ -4,8 +4,15 @@
 			- @appointments.each do |appointment|
 				%a{ href: (url_for [appointment])}
 					.appointment 
-						%p.title= appointment.title
-						%p.date= time_ago_in_words(appointment.created_at)
+						.table-responsive
+							%table.table
+								%tbody
+									%tr
+										%td
+											= image_tag appointment.profile.avatar.url(:thumb)
+										%td
+											%p.title= appointment.title
+											%p.date= time_ago_in_words(appointment.created_at)
 		- else 
 			%h2 Request an appointment now
 			%p It appears you are not cool

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315165132) do
+ActiveRecord::Schema.define(version: 20160315195623) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160315165132) do
     t.integer  "length"
     t.string   "date"
     t.boolean  "active"
+    t.integer  "profile_id"
   end
 
   create_table "genders", force: :cascade do |t|

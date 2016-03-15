@@ -17,7 +17,7 @@
 					= link_to "Sign Out", destroy_user_session_path, method: :delete
 
 				- else
-					%p=link_to "Sign In", new_user_session_path, class: "button"
+					%p=link_to "Sign In", new_user_session_path
 
 	%p.notice= notice
 	%p.alert= alert
