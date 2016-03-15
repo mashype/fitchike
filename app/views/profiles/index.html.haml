@@ -1,0 +1,24 @@
+.wrapper_with_padding
+  %p#notice= notice
+  %h1 Listing Profiles
+  %table
+    %thead
+      %tr
+        %th User
+        %th Bio
+        %th Zip
+        %th Gender
+        %th{:colspan => "3"}
+    %tbody
+      - @profiles.each do |profile|
+        %tr
+          %td= profile.user_id
+          %td= profile.bio
+          %td= profile.zip
+          %td= profile.gender.gender
+          %td= link_to 'Show', profile
+          %td= link_to 'Edit', edit_profile_path(profile)
+          %td= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+  = link_to 'New Profile', new_profile_path
+

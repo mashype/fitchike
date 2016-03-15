@@ -1,0 +1,9 @@
+= simple_form_for @profile do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :user_id
+    = f.input :bio
+    = f.input :zip
+    = f.association :gender, label_method: :gender, value_method: :id, include_blank: false
+  .form-actions
+    = f.button :submit

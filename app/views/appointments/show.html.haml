@@ -2,6 +2,15 @@
 	#appointment_show
 		%h1= @appointment.title
 		%p= simple_format(@appointment.comments)
+		%strong PRICE:
+		%p= @appointment.price
+		%strong LENGTH:
+		%p= @appointment.length
+		%strong DATE:
+		%p= @appointment.date
+		%strong ACTIVE
+		%p= @appointment.active		
+		%strong USER
 		%p= @appointment.user_id
 		.buttons
 			= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"

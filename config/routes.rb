@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :profiles
+  resources :genders
   devise_for :users
   get 'welcome/index'
   resources :appointments

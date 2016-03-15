@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong User:
+  = @profile.user_id
+%p
+  %strong Bio:
+  = @profile.bio
+%p
+  %strong Zip:
+  = @profile.zip
+%p
+  %strong Gender:
+  = @profile.gender.gender
+= link_to 'Edit', edit_profile_path(@profile)
+|
+\#{link_to 'Back', profiles_path}
