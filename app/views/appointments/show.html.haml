@@ -1,0 +1,8 @@
+.wrapper_with_padding
+	#appointment_show
+		%h1= @appointment.title
+		%p= simple_format(@appointment.comments)
+		%p= @appointment.user_id
+		.buttons
+			= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
+			= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"

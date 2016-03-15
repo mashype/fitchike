@@ -1,0 +1,25 @@
+!!! 5
+
+%html
+%head
+	%title Fitchike
+	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+	= javascript_include_tag 'application', 'data-turbolinks-track' => true
+	%link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+	= csrf_meta_tags
+%body
+	%header
+		.header_inner
+			= link_to image_tag('fitchlogo.png'), root_path, id: "logo"
+			%nav
+				- if user_signed_in?
+					= link_to "New Request", new_appointment_path
+					= link_to "Sign Out", destroy_user_session_path, method: :delete
+
+				- else
+					%p=link_to "Sign In", new_user_session_path, class: "button"
+
+	%p.notice= notice
+	%p.alert= alert
+
+	= yield
