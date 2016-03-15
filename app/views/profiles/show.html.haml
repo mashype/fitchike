@@ -8,6 +8,8 @@
 %p
   %strong Zip:
   = @profile.zip
+  
+=image_tag @profile.avatar.url(:medium, class: "profile_avatar")
 %p
   %strong Gender:
   = @profile.gender.gender
