@@ -1,18 +1,57 @@
 %p#notice= notice
-%p
-  %strong User:
-  = @profile.user_id
-%p
-  %strong Bio:
-  = @profile.bio
-%p
-  %strong Zip:
-  = @profile.zip
-  
-=image_tag @profile.avatar.url(:medium, class: "profile_avatar")
-%p
-  %strong Gender:
-  = @profile.gender.gender
-= link_to 'Edit', edit_profile_path(@profile)
-|
-\#{link_to 'Back', profiles_path}
+.wrapper_with_padding
+	.panel.panel-default
+		.panel-body
+			.row
+				.col-md-4
+					= image_tag @profile.avatar.url(:medium)
+				.col-md-8  
+					.table-responsive
+						%table.table
+							%tbody
+								%tr
+									%td
+										%strong Avg Rating:
+									%td{class: "star-rating", dscore: @avg_review}
+										%em= "#{@reviews.length} reviews"
+								%tr
+									%td
+										%strong User Email:
+									%td= @profile.user.email
+								%tr
+									%td
+										%strong Bio:
+									%td= @profile.bio
+								%tr
+									%td
+										%strong Zip:
+									%td= @profile.zip
+								%tr
+									%td
+										%strong Gender:
+									%td= @profile.gender.gender 
+						=link_to "Review Me", new_profile_review_path(@profile)
+			.row
+				%table.table.table-hover
+					%thead
+						%tr
+							%th Rating
+							%th Comment
+							%th{:colspan => "2"}
+					%tbody
+						- @reviews.each do |review|
+							%tr
+								%td{class: "star-rating", dscore: review.rating}
+								%td= review.comment
+
+
+:javascript
+		$('.star-rating').raty({
+				path: '/assets/',
+				readOnly: true,
+				score: function() {
+						return $(this).attr('dscore');
+				}
+		}); 
+
+

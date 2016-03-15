@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315125850) do
+ActiveRecord::Schema.define(version: 20160315165132) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "title"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20160315125850) do
   end
 
   add_index "profiles", ["gender_id"], name: "index_profiles_on_gender_id"
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "profile_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

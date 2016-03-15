@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  resources :profiles
+
+  resources :profiles do 
+    resources :reviews, except: [:show, :index]
+  end
+
   resources :genders
-  devise_for :users
-  get 'welcome/index'
+  
   resources :appointments
 
+  devise_for :users
+  
+  get 'welcome/index'
+ 
   authenticated :user do
   	root 'appointments#index', as: "authenticated_root"
   end
