@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
 
   def show
     @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
-    @appointments = Appointment.where(profile_id: @profile.id).order("created_at DESC")
+    @appointments = Appointment.where(profile_id: @profile.id).order("created_at DESC")    
 
     if @reviews.blank?
       @avg_review = 0

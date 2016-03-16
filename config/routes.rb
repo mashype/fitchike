@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :genders
   
-  resources :appointments
+  resources :appointments do
+    resources :confirmations
+  end
 
   resources :charges
 

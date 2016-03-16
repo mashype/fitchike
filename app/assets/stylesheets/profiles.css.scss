@@ -1,0 +1,23 @@
+$dark_gray: #2B2E2E;
+$light_gray: #C0C1C1;
+$blue: #0B5BAE;
+$red: #B11322;
+
+
+#profile_info {
+	background: $light_gray;
+	min-height: 300px;
+	border-radius: 5px;
+	padding: 2em 8%;
+}
+
+#profiles, #appointments {
+	margin-bottom: 50px;
+	ul, ol {
+		padding-left: 18px;
+		li {
+			padding: 1em 0;
+			border-bottom: 1px solid #EAEAEA;
+		}
+	}
+}

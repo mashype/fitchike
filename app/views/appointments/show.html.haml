@@ -1,23 +1,61 @@
 .wrapper_with_padding
-	#appointment_show
-		%h1= @appointment.title
-		%p= simple_format(@appointment.comments)
-		%strong PRICE:
-		%p= @appointment.price
-		%strong LENGTH:
-		%p= @appointment.length
-		%strong DATE:
-		%p= @appointment.date
-		%strong ACTIVE
-		%p= @appointment.active		
-		%strong USER
-		%p= @appointment.user_id
-		%strong PROFILE
-		%p= @appointment.profile_id
+	.table-responsive
+		.row
+			.col-md-4
+				%h1= @appointment.title
+				%p= simple_format(@appointment.comments)
+			.col-md-8  
+				#appointment_show
+					.table-responsive
+						%table.table
+							%tbody
+								%tr
+									%td
+										%strong PRICE:
+									%td= @appointment.price
+								%tr
+									%td
+										%strong LENGTH:
+									%td= @appointment.length
+								%tr
+									%td
+										%strong DATE:
+									%td= @appointment.date
+								%tr
+									%td
+										%strong ACTIVE:
+									%td= @appointment.active
+								%tr
+									%td
+										%strong USER:
+									%td= @appointment.user_id 
+								%tr		
+									%td
+										%strong PROFILE:
+									%td= @appointment.profile_id 	
 
-		%form{:action => "", :method => "POST"}
-			%script.stripe-button{"data-amount" => "20", "data-description" => "2 widgets ($20.00)", "data-image" => "/128x128.png", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Demo Site", :src => "https://checkout.stripe.com/checkout.js"}
+		.row		
+			%form{:action => "", :method => "POST"}
+				%script.stripe-button{"data-amount" => "20", "data-description" => "2 widgets ($20.00)", "data-image" => "/128x128.png", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Demo Site", :src => "https://checkout.stripe.com/checkout.js"}
+		.row
+			.buttons
+				= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
+				= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
+				= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"
 
-		.buttons
-			= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
-			= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"
+		.row
+			%table.table.table-hover
+				%thead
+					%tr
+						%th User
+						%th Appointment ID
+						%th Confirmation Number
+						%th Date Dooked
+						%th{:colspan => "4"}
+				%tbody
+					- @confirmations.each do |confirmation|
+						%tr
+							%td= confirmation.user.email
+							%td= confirmation.appointment_id
+							%td= confirmation.confirmation_temp
+							%td= confirmation.created_at

@@ -6,6 +6,7 @@ class AppointmentsController < ApplicationController
 	end
 
 	def show
+		@confirmations = Confirmation.where(appointment_id: @appointment.id).order("created_at DESC")
 	end
 
 	def new

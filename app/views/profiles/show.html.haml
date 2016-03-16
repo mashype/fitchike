@@ -6,33 +6,34 @@
 				.col-md-4
 					= image_tag @profile.avatar.url(:medium)
 				.col-md-8  
-					.table-responsive
-						%table.table
-							%tbody
-								%tr
-									%td
-										%strong Avg Rating:
-									%td{class: "star-rating", dscore: @avg_review}
-										%em= "#{@reviews.length} reviews"
-								%tr
-									%td
-										%strong User Email:
-									%td= @profile.user.email
-								%tr
-									%td
-										%strong Bio:
-									%td= @profile.bio
-								%tr
-									%td
-										%strong Zip:
-									%td= @profile.zip
-								%tr
-									%td
-										%strong Gender:
-									%td= @profile.gender.gender 
-						=link_to "Review Me", new_profile_review_path(@profile)
-						=link_to "Edit My Record", edit_profile_path
-			.row
+					#profile_info
+						.table-responsive
+							%table.table
+								%tbody
+									%tr
+										%td
+											%strong Avg Rating:
+										%td{class: "star-rating", dscore: @avg_review}
+											%em= "#{@reviews.length} reviews"
+									%tr
+										%td
+											%strong User Email:
+										%td= @profile.user.email
+									%tr
+										%td
+											%strong Bio:
+										%td= @profile.bio
+									%tr
+										%td
+											%strong Zip:
+										%td= @profile.zip
+									%tr
+										%td
+											%strong Gender:
+										%td= @profile.gender.gender 
+							=link_to "Review Me", new_profile_review_path(@profile)
+							=link_to "Edit My Record", edit_profile_path
+
 				%table.table.table-hover
 					%thead
 						%tr
@@ -44,7 +45,6 @@
 							%tr
 								%td{class: "star-rating", dscore: review.rating}
 								%td= review.comment
-			.row
 				%table.table.table-hover
 					%thead
 						%tr
@@ -60,6 +60,46 @@
 								%td= appointment.active
 								%td= link_to 'View', appointment_path(appointment)
 			=link_to "New Appt", new_appointment_path
+
+
+		%br
+
+		 
+/ Nav tabs
+%ul.nav.nav-tabs{:role => "tablist"}
+	%li.active{:role => "presentation"}
+		%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews
+	%li{:role => "presentation"}
+		%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointments", :role => "tab"} Appointments
+/ Tab panes
+.tab-content
+	#reviews.tab-pane.active{:role => "tabpanel"} 
+		%table.table.table-hover
+			%thead
+				%tr
+					%th Rating
+					%th Comment
+					%th{:colspan => "2"}
+			%tbody
+				- @profile.reviews.each do |review|
+					%tr
+						%td= review.rating
+						%td= review.comment
+	#appointments.tab-pane{:role => "tabpanel"} 
+		%table.table.table-hover
+			%thead
+				%tr
+					%th Title
+					%th Date
+					%th Active
+					%th{:colspan => "3"}
+			%tbody
+				- @appointments.each do |appointment|
+					%tr
+						%td= appointment.title
+						%td= appointment.date
+						%td= appointment.active
+
 
 :javascript
 		$('.star-rating').raty({
