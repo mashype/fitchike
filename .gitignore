@@ -13,3 +13,4 @@
 !/log/.keep
 /tmp
 /public/system/profiles/avatars
+/config/initializers/stripe.rb

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://code.stripe.com'
 
 gem 'rails', '4.2.4'
 gem 'pg'
@@ -15,6 +16,7 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'rails_12factor', group: :production
+gem 'stripe'
 
 
 group :development, :test do

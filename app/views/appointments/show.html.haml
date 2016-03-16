@@ -14,6 +14,10 @@
 		%p= @appointment.user_id
 		%strong PROFILE
 		%p= @appointment.profile_id
+
+		%form{:action => "", :method => "POST"}
+			%script.stripe-button{"data-amount" => "20", "data-description" => "2 widgets ($20.00)", "data-image" => "/128x128.png", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Demo Site", :src => "https://checkout.stripe.com/checkout.js"}
+
 		.buttons
 			= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
 			= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"
