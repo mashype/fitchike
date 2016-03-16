@@ -1,5 +1,5 @@
-%p#notice= notice
 .wrapper_with_padding
+	%p#notice= notice
 	.panel.panel-default
 		.panel-body
 			.row
@@ -59,6 +59,7 @@
 								%td= appointment.date
 								%td= appointment.active
 								%td= link_to 'View', appointment_path(appointment)
+			=link_to "New Appt", new_appointment_path
 
 :javascript
 		$('.star-rating').raty({
