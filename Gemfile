@@ -14,6 +14,7 @@ gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'puma'
 
 
 group :development, :test do
