@@ -2,7 +2,7 @@ class AppointmentsController < ApplicationController
 	before_action :find_appointment, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@appointments = Appointment.where(user_id: current_user)
+		@appointments = Appointment.where(active: "TRUE")
 	end
 
 	def show
