@@ -12,6 +12,7 @@
 											= image_tag appointment.profile.avatar.url(:thumb)
 										%td
 											%p.title= appointment.title
+											%p.price= number_to_currency(appointment.price, unit:"$")
 											%p.date= time_ago_in_words(appointment.created_at)
 		- else 
 			%h2 Request an appointment now

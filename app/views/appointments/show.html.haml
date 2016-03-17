@@ -12,7 +12,7 @@
 								%tr
 									%td
 										%strong PRICE:
-									%td= @appointment.price
+									%td= number_to_currency(@appointment.price, unit:"$")
 								%tr
 									%td
 										%strong LENGTH:
