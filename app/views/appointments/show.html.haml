@@ -36,7 +36,7 @@
 
 		.row		
 			%form{:action => "", :method => "POST"}
-				%script.stripe-button{"data-amount" => "20", "data-description" => "2 widgets ($20.00)", "data-image" => "/128x128.png", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Demo Site", :src => "https://checkout.stripe.com/checkout.js"}
+				%script.stripe-button{"data-amount" => (@appointment.price*100), "data-description" => @appointment.title , "data-image" => "../../assets/images/fitchlogo.png", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Fitchike", :src => "https://checkout.stripe.com/checkout.js"}
 		.row
 			.buttons
 				= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
