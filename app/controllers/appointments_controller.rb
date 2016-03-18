@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
 	before_action :find_appointment, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!
 
 	def index
 		@appointments = Appointment.where(active: "TRUE")

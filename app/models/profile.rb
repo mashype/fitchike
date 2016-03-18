@@ -7,4 +7,5 @@ class Profile < ActiveRecord::Base
 
 	has_many :reviews
 	has_many :appointments
+	has_many :workout_types
 end

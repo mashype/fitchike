@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
 
+  resources :workout_types
   resources :profiles do 
     resources :reviews, except: [:show, :index]
   end
 
-  resources :genders
+  
   
   resources :appointments do
     resources :confirmations
   end
 
   resources :charges
-
+  resources :genders
+  
   devise_for :users
   
   get 'welcome/index'
