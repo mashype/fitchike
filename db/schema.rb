@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318191516) do
+ActiveRecord::Schema.define(version: 20160319040950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20160318191516) do
     t.boolean  "active"
     t.integer  "profile_id"
   end
+
+  add_index "appointments", ["profile_id"], name: "index_appointments_on_profile_id", using: :btree
 
   create_table "confirmations", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160318191516) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "username"
   end
 
   add_index "profiles", ["gender_id"], name: "index_profiles_on_gender_id", using: :btree
@@ -91,5 +94,6 @@ ActiveRecord::Schema.define(version: 20160318191516) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointments", "profiles"
   add_foreign_key "profiles", "genders"
 end

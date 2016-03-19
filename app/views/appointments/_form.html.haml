@@ -4,6 +4,6 @@
 	=f.input :date
 	=f.input :length
 	=f.input :price
-	=f.input :profile_id
+	=f.association :profile, label_method: :username, value_method: :id, include_blank: false
 	=f.input :active
 	=f.button :submit, class: "button"

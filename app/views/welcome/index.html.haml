@@ -1,9 +1,13 @@
 #banner
 	.banner_content
-		%h1 Fitchike
-		%tag Hitch a ride with us to fitness
-		%p We connect you with personalized personal training on your terms
-		%button= link_to "Check it out now", new_user_registration_path
+		= link_to image_tag('fitchlogo_center.png'), profiles_path, id: "logo"
+		%br/
+		%tag Let Fitchike connect you with personalized personal training on your terms...
+		%br/
+		%br/
+		%button= link_to "Get Started", new_user_registration_path
+		%br/
+
 
 #testimonial
 	.wrapper
@@ -28,6 +32,7 @@
 #bottom_cta
 	.wrapper
 		%h2 Why are you not already signed up?  
+		%br/
 		%p Just take a look and we bet that you'll find what you're looking for.  Check out available appointments now.
 		%button= link_to "View Our Trainers", profiles_path
 

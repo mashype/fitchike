@@ -28,34 +28,39 @@
 								%tr
 									%td
 										%strong USER:
-									%td= @appointment.user_id 
+									%td= @appointment.user.email 
 								%tr		
 									%td
 										%strong PROFILE:
-									%td= @appointment.profile_id 	
-
-		.row		
-			%form{:action => "", :method => "POST"}
-				%script.stripe-button{"data-amount" => (@appointment.price*100), "data-description" => @appointment.title , "data-image" => "../../assets/images/fitchlogo.png", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Fitchike", :src => "https://checkout.stripe.com/checkout.js"}
-		.row
-			.buttons
+									%td= @appointment.profile.zip 	
+								%tr
+									%form{:action => "", :method => "POST"}
+										%script.stripe-button{"data-amount" => (@appointment.price*100), "data-description" => @appointment.title , "data-image" => "../../assets/images/fitchlogo.jpg", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Fitchike", :src => "https://checkout.stripe.com/checkout.js"}
+	%br/
+	.row
+		.buttons
+			- if @appointment.user_id == current_user.id
 				= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
-				= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
 				= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"
 
-		.row
-			%table.table.table-hover
-				%thead
+			- else
+				= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
+			
+	%br/
+	USERS
+	.row
+		%table.table.table-hover
+			%thead
+				%tr
+					%th User
+					%th Appointment ID
+					%th Confirmation Number
+					%th Date Booked
+					%th{:colspan => "4"}
+			%tbody
+				- @confirmations.each do |confirmation|
 					%tr
-						%th User
-						%th Appointment ID
-						%th Confirmation Number
-						%th Date Dooked
-						%th{:colspan => "4"}
-				%tbody
-					- @confirmations.each do |confirmation|
-						%tr
-							%td= confirmation.user.email
-							%td= confirmation.appointment_id
-							%td= confirmation.confirmation_temp
-							%td= confirmation.created_at
+						%td= confirmation.user.email
+						%td= confirmation.appointment_id
+						%td= confirmation.confirmation_temp
+						%td= confirmation.created_at
