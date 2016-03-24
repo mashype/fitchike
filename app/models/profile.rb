@@ -7,5 +7,16 @@ class Profile < ActiveRecord::Base
 
 	has_many :reviews
 	has_many :appointments
-	has_many :workout_types
+	
+	has_many :profile_certifications
+	has_many :certifications, through: :profile_certifications
+	accepts_nested_attributes_for :profile_certifications, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :certifications, reject_if: :all_blank, allow_destroy: true
+
+	has_many :profile_workouts
+	has_many :workouts, through: :profile_workouts
+	accepts_nested_attributes_for :profile_workouts, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :workouts, reject_if: :all_blank, allow_destroy: true
+
 end
+

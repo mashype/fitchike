@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319040950) do
+ActiveRecord::Schema.define(version: 20160324171839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20160319040950) do
 
   add_index "appointments", ["profile_id"], name: "index_appointments_on_profile_id", using: :btree
 
+  create_table "certifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "cert_name"
+  end
+
   create_table "confirmations", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "appointment_id"
@@ -44,6 +50,28 @@ ActiveRecord::Schema.define(version: 20160319040950) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "profile_certifications", force: :cascade do |t|
+    t.string   "cert_year"
+    t.integer  "profile_id"
+    t.integer  "certification_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "profile_certifications", ["certification_id"], name: "index_profile_certifications_on_certification_id", using: :btree
+  add_index "profile_certifications", ["profile_id"], name: "index_profile_certifications_on_profile_id", using: :btree
+
+  create_table "profile_workouts", force: :cascade do |t|
+    t.integer  "rating"
+    t.integer  "profile_id"
+    t.integer  "workout_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "profile_workouts", ["profile_id"], name: "index_profile_workouts_on_profile_id", using: :btree
+  add_index "profile_workouts", ["workout_id"], name: "index_profile_workouts_on_workout_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -88,12 +116,16 @@ ActiveRecord::Schema.define(version: 20160319040950) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "workout_types", force: :cascade do |t|
-    t.string   "type_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "workouts", force: :cascade do |t|
+    t.string   "workout_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_foreign_key "appointments", "profiles"
+  add_foreign_key "profile_certifications", "certifications"
+  add_foreign_key "profile_certifications", "profiles"
+  add_foreign_key "profile_workouts", "profiles"
+  add_foreign_key "profile_workouts", "workouts"
   add_foreign_key "profiles", "genders"
 end

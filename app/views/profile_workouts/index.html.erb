@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Profile Workouts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profile_workouts.each do |profile_workout| %>
+      <tr>
+        <td><%= profile_workout.rating %></td>
+        <td><%= link_to 'Show', profile_workout %></td>
+        <td><%= link_to 'Edit', edit_profile_workout_path(profile_workout) %></td>
+        <td><%= link_to 'Destroy', profile_workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile workout', new_profile_workout_path %>

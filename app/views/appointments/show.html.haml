@@ -1,9 +1,10 @@
 .wrapper_with_padding
+	%h1= @appointment.title
 	.table-responsive
 		.row
 			.col-md-4
-				%h1= @appointment.title
 				%p= simple_format(@appointment.comments)
+				= link_to "View Profile", profile_path(@appointment.profile_id), class: "button"
 			.col-md-8  
 				#appointment_show
 					.table-responsive
@@ -27,12 +28,12 @@
 									%td= @appointment.active
 								%tr
 									%td
-										%strong USER:
+										%strong EMAIL:
 									%td= @appointment.user.email 
 								%tr		
 									%td
-										%strong PROFILE:
-									%td= @appointment.profile.zip 	
+										%strong USERNAME:
+									%td= @appointment.profile.username 	
 								%tr
 									%form{:action => "", :method => "POST"}
 										%script.stripe-button{"data-amount" => (@appointment.price*100), "data-description" => @appointment.title , "data-image" => "../../assets/images/fitchlogo.jpg", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Fitchike", :src => "https://checkout.stripe.com/checkout.js"}

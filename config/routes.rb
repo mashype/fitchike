@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :workout_types
+  resources :profile_workouts
+  resources :workouts
+  resources :profile_certifications
+  resources :certifications
+  resources :profile_workout_types
+  resources :workouttypes
   resources :profiles do 
     resources :reviews, except: [:show, :index]
   end

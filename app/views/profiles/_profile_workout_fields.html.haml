@@ -1,0 +1,6 @@
+%li.control-group.nested-fields
+	.controls
+		= f.input :rating, input_html: {class: 'form-control'}
+		= f.association :workout, label_method: :workout_name, value_method: :id, include_blank: false
+		= link_to_remove_association "remove", f
+

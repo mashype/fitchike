@@ -1,0 +1,2 @@
+module ProfileWorkoutTypesHelper
+end

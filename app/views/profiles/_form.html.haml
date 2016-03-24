@@ -13,5 +13,25 @@
 		= f.input :zip, input_html: { class: 'form-control'}
 		= f.association :gender, label_method: :gender, value_method: :id, include_blank: false
 		= f.input :avatar, input_html: { class: 'form-control'}
+
+		.row
+			.col-md-6
+				%h3 Workouts
+				#workouts
+					%fieldset#profile-workouts
+						%ol
+							= f.simple_fields_for :profile_workouts do |profileworkout|
+								= render 'profile_workout_fields', f: profileworkout
+						= link_to_add_association 'Select Works', f, :profile_workouts, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-workouts ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_workout| profile_workout.build_workout; profile_workout }
+			.col-md-6
+				%h3 Certifications
+				#certifications
+					%fieldset#profile-certifications
+						%ol
+							= f.simple_fields_for :profile_certifications do |profilecertification|
+								= render 'profile_certification_fields', f: profilecertification
+						= link_to_add_association 'Select Certs', f, :profile_certifications, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-certifications ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_certification| profile_certification.build_certification; profile_certification }
+
 	.form-actions
 		= f.button :submit
+
