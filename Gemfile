@@ -16,6 +16,7 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
+gem 'heroku', '~> 3.42', '>= 3.42.44'
 gem 'rails_12factor', group: :production
 
 group :development, :test do
