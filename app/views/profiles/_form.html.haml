@@ -32,6 +32,16 @@
 							= f.simple_fields_for :profile_certifications do |profilecertification|
 								= render 'profile_certification_fields', f: profilecertification
 						= link_to_add_association 'Select Certs', f, :profile_certifications, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-certifications ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_certification| profile_certification.build_certification; profile_certification }
+		.row
+			%h3 Locations
+			#locations
+				%fieldset#profile-locations
+					%ol
+						= f.simple_fields_for :profile_locations do |profilelocation|
+							= render 'profile_location_fields', f: profilelocation
+					= link_to_add_association 'Add Locations', f, :profile_locations, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-locations ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_location| profile_location.build_location; profile_location }
+
+
 
 	.form-actions
 		= f.button :submit

@@ -1,60 +1,55 @@
 .wrapper_with_padding
-	%h1= @appointment.title
 	.table-responsive
 		.row
 			.col-md-4
-				%p= simple_format(@appointment.comments)
-				= link_to "View Profile", profile_path(@appointment.profile_id), class: "button"
-			.col-md-8  
+				= image_tag @appointment.profile.avatar.url(:medium)
+			.col-md-8
 				#appointment_show
-					.table-responsive
-						%table.table
-							%tbody
-								%tr
-									%td
-										%strong PRICE:
-									%td= number_to_currency(@appointment.price, unit:"$")
-								%tr
-									%td
-										%strong LENGTH:
-									%td= @appointment.length
-								%tr
-									%td
-										%strong DATE:
-									%td= @appointment.date
-								%tr
-									%td
-										%strong ACTIVE:
-									%td= @appointment.active
-								%tr
-									%td
-										%strong EMAIL:
-									%td= @appointment.user.email 
-								%tr		
-									%td
-										%strong USERNAME:
-									%td= @appointment.profile.username 	
-								%tr
-									%form{:action => "", :method => "POST"}
-										%script.stripe-button{"data-amount" => (@appointment.price*100), "data-description" => @appointment.title , "data-image" => "../../assets/images/fitchlogo.jpg", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Fitchike", :src => "https://checkout.stripe.com/checkout.js"}
-	%br/
-	.row
-		.buttons
-			- if @appointment.user_id == current_user.id
-				= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
-				= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"
+					%h1= @appointment.title
+					%p= simple_format(@appointment.comments)
+					.row
+						%form{:action => "", :method => "POST"}
+							%script.stripe-button{"data-amount" => (@appointment.price*100), "data-description" => @appointment.title , "data-image" => "../../assets/images/fitchlogo.jpg", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Fitchike", :src => "https://checkout.stripe.com/checkout.js"}
+						%br/
+						= link_to "View Profile", profile_path(@appointment.profile_id), class: "btn btn-default"
+						- if @appointment.user_id == current_user.id
+							= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "btn btn-default"
+							= link_to "Delete", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "btn btn-default"
 
-			- else
-				= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
-			
-	%br/
-	USERS
-	.row
+						- else
+							= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "btn btn-primary"
+	.wrapper
+		.table-responsive
+			%table.table
+				%tbody
+					%tr
+						%td
+							%strong PRICE:
+						%td= number_to_currency(@appointment.price, unit:"$")
+					%tr
+						%td
+							%strong LENGTH:
+						%td= @appointment.length
+					%tr
+						%td
+							%strong DATE:
+						%td= @appointment.date
+					%tr
+						%td
+							%strong ACTIVE:
+						%td= @appointment.active
+					%tr		
+						%td
+							%strong USERNAME:
+						%td= @appointment.profile.username 	
+					%tr
+				
+				%br/
+
 		%table.table.table-hover
 			%thead
 				%tr
-					%th User
-					%th Appointment ID
+					%th User Email
 					%th Confirmation Number
 					%th Date Booked
 					%th{:colspan => "4"}
@@ -62,6 +57,5 @@
 				- @confirmations.each do |confirmation|
 					%tr
 						%td= confirmation.user.email
-						%td= confirmation.appointment_id
 						%td= confirmation.confirmation_temp
 						%td= confirmation.created_at

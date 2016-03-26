@@ -5,7 +5,7 @@
 			.row
 				.col-md-4
 					= image_tag @profile.avatar.url(:medium)
-
+					%br/
 					- if @profile.user_id == current_user.id
 						= link_to "Edit My Record", edit_profile_path(@profile), class: "button"
 
@@ -28,16 +28,8 @@
 										%td= @profile.username
 									%tr
 										%td
-											%strong User Email:
-										%td= @profile.user.email
-									%tr
-										%td
 											%strong Bio:
 										%td= @profile.bio
-									%tr
-										%td
-											%strong Zip:
-										%td= @profile.zip
 									%tr
 										%td
 											%strong Gender:
@@ -52,7 +44,9 @@
 			%li.active{:role => "presentation"}
 				%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointments", :role => "tab"} Appointments
 			%li{:role => "presentation"}
-				%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews				
+				%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews
+			%li{:role => "presentation"}
+				%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
 			%li{:role => "presentation"}
 				%a{"aria-controls" => "workouts", "data-toggle" => "tab", :href => "#workouts", :role => "tab"} Workouts
 			%li{:role => "presentation"}
@@ -77,6 +71,24 @@
 								%td= link_to 'View', appointment_path(appointment)
 				=link_to "New Appt", new_appointment_path
 
+			#locations.tab-pane{:role => "tabpanel"}
+				%table.table.table-hover
+					%thead
+						%tr
+							%th Address
+							%th City
+							%th State
+							%th Zip
+							%th Loc Type
+							%th{:colspan => "2"}
+					%tbody
+						- @profile.profile_locations.each do |profile_locations|
+							%tr
+								%td= profile_locations.location.address_1
+								%td= profile_locations.location.city
+								%td= profile_locations.location.state
+								%td= profile_locations.location.zip
+								%td= profile_locations.location_type.type_name
 			#reviews.tab-pane{:role => "tabpanel"} 
 				%table.table.table-hover
 					%thead
@@ -90,7 +102,6 @@
 								%td{class: "star-rating", dscore: review.rating}
 								%td= review.comment
 				=link_to "Review Me", new_profile_review_path(@profile)
-
 			#workouts.tab-pane{:role => "tabpanel"} 	
 				%table.table.table-hover
 					%thead
@@ -124,5 +135,6 @@
 						return $(this).attr('dscore');
 				}
 		}); 
+
 
 

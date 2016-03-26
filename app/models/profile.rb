@@ -18,5 +18,10 @@ class Profile < ActiveRecord::Base
 	accepts_nested_attributes_for :profile_workouts, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :workouts, reject_if: :all_blank, allow_destroy: true
 
+	has_many :profile_locations
+	has_many :locations, through: :profile_locations
+	accepts_nested_attributes_for :profile_locations, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :locations, reject_if: :all_blank, allow_destroy: true
+
 end
 

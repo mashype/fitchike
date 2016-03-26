@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324171839) do
+ActiveRecord::Schema.define(version: 20160326025225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,24 @@ ActiveRecord::Schema.define(version: 20160324171839) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "location_types", force: :cascade do |t|
+    t.string   "type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.float    "lat"
+    t.float    "lon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "profile_certifications", force: :cascade do |t|
     t.string   "cert_year"
     t.integer  "profile_id"
@@ -61,6 +79,18 @@ ActiveRecord::Schema.define(version: 20160324171839) do
 
   add_index "profile_certifications", ["certification_id"], name: "index_profile_certifications_on_certification_id", using: :btree
   add_index "profile_certifications", ["profile_id"], name: "index_profile_certifications_on_profile_id", using: :btree
+
+  create_table "profile_locations", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "location_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "location_type_id"
+    t.boolean  "guests"
+  end
+
+  add_index "profile_locations", ["location_id"], name: "index_profile_locations_on_location_id", using: :btree
+  add_index "profile_locations", ["profile_id"], name: "index_profile_locations_on_profile_id", using: :btree
 
   create_table "profile_workouts", force: :cascade do |t|
     t.integer  "rating"
@@ -125,6 +155,8 @@ ActiveRecord::Schema.define(version: 20160324171839) do
   add_foreign_key "appointments", "profiles"
   add_foreign_key "profile_certifications", "certifications"
   add_foreign_key "profile_certifications", "profiles"
+  add_foreign_key "profile_locations", "locations"
+  add_foreign_key "profile_locations", "profiles"
   add_foreign_key "profile_workouts", "profiles"
   add_foreign_key "profile_workouts", "workouts"
   add_foreign_key "profiles", "genders"

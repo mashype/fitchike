@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Loc title:</strong>
+  <%= @profile_location.profile_id %>
+  <%= @profile_location.location_id %>
+  <%= @profile_location.location_type_id %>
+  <%= @profile_location.guests %>
+</p>
+
+<%= link_to 'Edit', edit_profile_location_path(@profile_location) %> |
+<%= link_to 'Back', profile_locations_path %>

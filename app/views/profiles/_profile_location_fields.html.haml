@@ -1,0 +1,6 @@
+%li.control-group.nested-fields
+	.controls
+		= f.association :location_type, label_method: :type_name, value_method: :id, include_blank: false
+		= f.association :location, label_method: :address_1, value_method: :id, include_blank: false
+		= link_to_remove_association "remove", f
+

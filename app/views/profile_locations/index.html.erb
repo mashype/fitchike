@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Profile Locations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loc ID</th>
+      <th>Prof ID</th>
+      <th>Loc Type ID</th>
+      <th>Loc Guests</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profile_locations.each do |profile_location| %>
+      <tr>
+        <td><%= profile_location.location_id %></td>
+        <td><%= profile_location.profile_id %></td>
+        <td><%= profile_location.location_type_id %></td>
+        <td><%= profile_location.guests %></td>
+        <td><%= link_to 'Show', profile_location %></td>
+        <td><%= link_to 'Edit', edit_profile_location_path(profile_location) %></td>
+        <td><%= link_to 'Destroy', profile_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile location', new_profile_location_path %>

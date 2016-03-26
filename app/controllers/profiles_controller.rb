@@ -65,6 +65,7 @@ class ProfilesController < ApplicationController
 
     def profile_params
       params.require(:profile).permit(:user_id, :username, :bio, :zip, :avatar, :gender_id,
+      profile_locations_attributes: [:id, :profile_id, :location_id, :location_type_id, :_destroy],
       profile_certifications_attributes: [:id, :profile_id, :certification_id, :cert_year, :_destroy],
       profile_workouts_attributes: [:id, :profile_id, :workout_id, :rating, :_destroy])
     end

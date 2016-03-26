@@ -6,13 +6,13 @@
 					.box.panex.panel-default
 						= image_tag appointment.profile.avatar.url(:medium)
 						.panel-body
-							%p.title= appointment.title
+							%h2= appointment.title
+							%p.user= appointment.profile.username
 							%p.price= number_to_currency(appointment.price, unit:"$")
 							%p.date= time_ago_in_words(appointment.created_at)
 		- else 
 			%h2 Request an appointment now
 			%p Sorry, but all our appointments are totally booked up right now.
-
 
 :javascript
 		$('.star-rating').raty({

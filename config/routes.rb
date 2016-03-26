@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :location_types
+  resources :profile_locations
+  resources :locations
   resources :profile_workouts
   resources :workouts
   resources :profile_certifications
