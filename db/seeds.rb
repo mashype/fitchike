@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Gender.create([{ gender: 'Male' }, { gender: 'Female' }])
+Workout.create([{ type_name: 'Interval Training' }, { type_name: 'Yoga - Traditional' }, { type_name: 'Studio' }])
+Location_type.create([{ type_name: 'Home' }, { type_name: 'Gym' }, { type_name: 'Studio' }])
+Certification.create([{ cert_name: 'P-90 Certified Trainer' }, { type_name: 'Certified Yoga' }, { type_name: 'Certified PreNatal' }])

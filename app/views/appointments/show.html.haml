@@ -2,7 +2,27 @@
 	.table-responsive
 		.row
 			.col-md-4
-				= image_tag @appointment.profile.avatar.url(:medium)
+				= link_to (image_tag @appointment.profile.avatar.url(:medium)), @appointment.profile
+				.table-responsive
+					%table.table
+						%tbody
+							%tr		
+								%td
+									%strong USERNAME:
+								%td= @appointment.profile.username 	
+							%tr
+								%td
+									%strong PRICE:
+								%td= number_to_currency(@appointment.price, unit:"$")
+							%tr
+								%td
+									%strong LENGTH:
+								%td= @appointment.length
+							%tr
+								%td
+									%strong DATE:
+								%td= @appointment.date
+
 			.col-md-8
 				#appointment_show
 					%h1= @appointment.title
@@ -18,44 +38,22 @@
 
 						- else
 							= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "btn btn-primary"
-	.wrapper
-		.table-responsive
-			%table.table
-				%tbody
-					%tr
-						%td
-							%strong PRICE:
-						%td= number_to_currency(@appointment.price, unit:"$")
-					%tr
-						%td
-							%strong LENGTH:
-						%td= @appointment.length
-					%tr
-						%td
-							%strong DATE:
-						%td= @appointment.date
-					%tr
-						%td
-							%strong ACTIVE:
-						%td= @appointment.active
-					%tr		
-						%td
-							%strong USERNAME:
-						%td= @appointment.profile.username 	
-					%tr
-				
-				%br/
 
 		%table.table.table-hover
-			%thead
-				%tr
-					%th User Email
-					%th Confirmation Number
-					%th Date Booked
-					%th{:colspan => "4"}
-			%tbody
-				- @confirmations.each do |confirmation|
-					%tr
-						%td= confirmation.user.email
-						%td= confirmation.confirmation_temp
-						%td= confirmation.created_at
+
+			%tbody	
+				- unless @confirmations.blank?
+					%thead
+						%tr
+							%th User Email
+							%th Confirmation Number
+							%th Date Booked
+							%th{:colspan => "4"}
+					- @confirmations.each do |confirmation|
+						%tr
+							%td= confirmation.user.email
+							%td= confirmation.confirmation_temp
+							%td= confirmation.created_at
+				- else 
+					%h2 Be the first to book
+					%p No others are booked into this session yet.

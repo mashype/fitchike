@@ -19,7 +19,7 @@ $red: #B11322;
   width: 100%;
   .box {
 	  background: $light_gray;
-	  margin: 15px;
+	  margin: 10px;
 	  width: 300px;
 	  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
 	  border-radius: 7px;
@@ -32,7 +32,7 @@ $red: #B11322;
 	  	@include bold_font;
 	  	font-size: 22px;
 	  	margin: 0;
-	  	padding: 15px 5px;
+	  	padding: 5px 5px;
 	  	a {
 				color: #474747;
 	  	}

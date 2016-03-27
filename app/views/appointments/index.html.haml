@@ -1,5 +1,7 @@
 .wrapper_with_padding
 	#appointments.transitions-enabled
+		- if current_user.profiles.blank?
+			= link_to "Create Your Profile Now", new_profile_path, class: "btn btn-primary"
 		- unless @appointments.blank?
 			- @appointments.each do |appointment|
 				%a{ href: (url_for [appointment])}
