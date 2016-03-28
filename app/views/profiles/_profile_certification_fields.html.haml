@@ -1,5 +1,5 @@
 %li.control-group.nested-fields
 	.controls
-		= f.input :cert_year, input_html: {class: 'form-control'}
 		= f.association :certification, label_method: :cert_name, value_method: :id, include_blank: false
+		= f.input :cert_year, inline_label: 'Certification Year'
 		= link_to_remove_association "remove", f

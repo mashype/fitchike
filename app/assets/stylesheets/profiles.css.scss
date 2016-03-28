@@ -51,3 +51,10 @@ $red: #B11322;
 		}
 	}
 }
+
+#profiles, #workouts, #certifications, #locations {
+	background: $light_gray;
+	min-height: 300px;
+	border-radius: 5px;
+	padding: 2em 8%;
+}
