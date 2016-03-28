@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
 	  [address_1, city, state, zip].compact.join(', ')
 	end
 
-	after_validation :geocode, :if => :address_changed?
+	after_validation :geocode, :if => :address_1_changed?
 
 	has_many :profile_locations
 	has_many :locations, through: :profile_locations
