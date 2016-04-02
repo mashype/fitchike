@@ -1,17 +1,19 @@
 .wrapper_with_padding
 	#appointments.transitions-enabled
-		- if current_user.profiles.blank?
+		- if current_user.profile.blank?
 			= link_to "Create Your Profile Now", new_profile_path, class: "btn btn-primary"
 		- unless @appointments.blank?
 			- @appointments.each do |appointment|
 				%a{ href: (url_for [appointment])}
-					.box.panex.panel-default
-						= image_tag appointment.profile.avatar.url(:medium)
-						.panel-body
+					.box.panel.panel-default
+						.panel-heading
 							%h2= appointment.title
-							%p.user= appointment.profile.username
-							%p.price= number_to_currency(appointment.price, unit:"$")
-							%p.date= time_ago_in_words(appointment.created_at)
+						.panel-body
+							= image_tag appointment.profile.avatar.url(:medium)
+						.panel-footer	
+							%user= appointment.profile.username
+							|
+							%price= number_to_currency(appointment.price, unit:"$")
 		- else 
 			%h2 Request an appointment now
 			%p Sorry, but all our appointments are totally booked up right now.

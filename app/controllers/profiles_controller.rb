@@ -18,14 +18,14 @@ class ProfilesController < ApplicationController
   end
 
   def new
-    @profile = current_user.profiles.build
+    @profile = current_user.build_profile
   end
 
   def edit
   end
 
   def create
-    @profile = current_user.profiles.build(profile_params)
+    @profile = current_user.build_profile(profile_params)
 
     respond_to do |format|
       if @profile.save
@@ -64,7 +64,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit(:user_id, :username, :bio, :zip, :avatar, :gender_id,
+      params.require(:profile).permit(:user_id, :username, :bio, :zip, :latitude, :longitude, :avatar, :gender_id,
       profile_locations_attributes: [:id, :profile_id, :location_id, :location_type_id, :_destroy, 
         location_attributes: [:id, :address_1, :address_2, :city, :state, :zip, :latitude, :longitude, :_destroy]],
       profile_certifications_attributes: [:id, :profile_id, :certification_id, :cert_year, :_destroy],

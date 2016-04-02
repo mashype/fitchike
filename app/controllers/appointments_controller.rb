@@ -3,6 +3,7 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+		ip_address = request.remote_ip
 		@appointments = Appointment.where(active: "TRUE")
 	end
 

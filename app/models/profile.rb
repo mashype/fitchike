@@ -1,4 +1,8 @@
 class Profile < ActiveRecord::Base
+
+	#geocoded_by :ip_address
+	#after_validation :geocode
+
 	has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
@@ -24,4 +28,3 @@ class Profile < ActiveRecord::Base
 	accepts_nested_attributes_for :locations, reject_if: :all_blank, allow_destroy: true
 
 end
-

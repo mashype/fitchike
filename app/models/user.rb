@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
   has_many :appointments
   has_many :confirmations
   has_many :reviews, dependent: :destroy
-  has_many :profiles
+  has_one :profile
 end
