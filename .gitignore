@@ -13,3 +13,4 @@
 !/log/.keep
 /tmp
 /config/initializers/stripe.rb
+/config/aws.yml

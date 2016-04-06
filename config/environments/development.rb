@@ -42,6 +42,15 @@
   # needed for devise gem
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+ # Amazon Web Services - S3
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'fitchike-dev',
+      :s3_credentials => "#{Rails.root}/config/aws.yml",
+    }
+  }
+
   class ActionDispatch::Request
   def remote_ip
     "84.34.156.155" # fake ip for example                                                                                                                                                                                                                                                                                    
