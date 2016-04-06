@@ -5,13 +5,6 @@
 			.row
 				.col-md-4
 					= image_tag @profile.avatar.url(:medium)
-					%br/
-					- if @profile.user_id == current_user.id
-						= link_to "Edit My Record", edit_profile_path(@profile), class: "button"
-
-					- elsif user_signed_in?
-						=link_to "Review Me", new_profile_review_path(@profile), class: "button"
-
 				.col-md-8  
 					#profile_info
 						.table-responsive
@@ -42,7 +35,20 @@
 										%td
 											%strong Longitude:
 										%td= @profile.longitude
-							
+									%tr
+										%td
+											%strong Trainer:
+										%td= @profile.trainer
+									%tr
+										%td
+										%td
+											%br/
+											- if @profile.user_id == current_user.id
+												= link_to "Edit My Record", edit_profile_path(@profile), class: "button"
+
+											- elsif user_signed_in?
+												=link_to "Review Me", new_profile_review_path(@profile), class: "button"
+																				
 
 
 		 
