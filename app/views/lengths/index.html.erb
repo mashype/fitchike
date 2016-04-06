@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Lengths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Appointment length</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lengths.each do |length| %>
+      <tr>
+        <td><%= length.appointment_length %></td>
+        <td><%= link_to 'Show', length %></td>
+        <td><%= link_to 'Edit', edit_length_path(length) %></td>
+        <td><%= link_to 'Destroy', length, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Length', new_length_path %>

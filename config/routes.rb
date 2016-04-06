@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :lengths
   resources :location_types
   resources :profile_locations
   resources :locations

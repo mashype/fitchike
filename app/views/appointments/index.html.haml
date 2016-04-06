@@ -1,26 +1,32 @@
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
+	%br/
 	#appointments.transitions-enabled
 		- unless @appointments.blank?
 			- @appointments.each do |appointment|
 				%a{ href: (url_for [appointment])}
 					.box.panel.panel-default
 						.panel-heading
-							%p= appointment.title
+							%h2= appointment.title
 						.panel-body
 							.table-responsive
 								%table.table
-									.col-md-5
-										= image_tag appointment.profile.avatar.url(:medium)
-									.col-md-7
-										%strong User:
-										%user= appointment.profile.username
-										%b
-										%strong Price:
-										%price= number_to_currency(appointment.price, unit:"$")
+									%tbody
+										%tr
+										.col-sm-5
+											.img
+												= image_tag appointment.profile.avatar.url(:medium)
+										.col-sm-7
 
-				
-							
+											%br/
+											%strong Price:
+											%price= number_to_currency(appointment.price, unit:"$")		
+											%br/
+											%strong Length:
+											%price= appointment.length.appointment_length	
+						.panel-footer
+							.user= appointment.profile.username
+
 		- else 
 			%p Sorry, but all our appointments are totally booked up right now.
 
@@ -32,3 +38,4 @@
 						return $(this).attr('dscore');
 				}
 		}); 
+

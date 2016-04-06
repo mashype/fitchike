@@ -35,9 +35,10 @@ $red: #B11322;
 }
 
 #profile_info {
-	background: $light_gray;
+	background: $dark_gray;
+	color: white;
 	min-height: 300px;
-	border-radius: 5px;
+	border-radius: 10px;
 	padding: 2em 8%;
 }
 
@@ -52,9 +53,8 @@ $red: #B11322;
 	}
 }
 
-#profiles, #workouts, #certifications, #locations {
+#profiles, #appointment, #reviews, #workouts, #certifications, #locations {
 	background: $light_gray;
 	min-height: 300px;
-	border-radius: 5px;
 	padding: 2em 8%;
 }

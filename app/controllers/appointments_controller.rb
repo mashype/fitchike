@@ -3,7 +3,6 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		ip_address = request.remote_ip
 		@appointments = Appointment.where(active: "TRUE")
 	end
 
@@ -48,6 +47,6 @@ class AppointmentsController < ApplicationController
 	end
 
 	def appointment_params
-		params.require(:appointment).permit(:title, :comments, :price, :length, :date, :active, :profile_id)
+		params.require(:appointment).permit(:title, :comments, :price, :date, :active, :length_id, :profile_id)
 	end
 end

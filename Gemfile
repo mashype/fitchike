@@ -18,6 +18,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
 gem 'geocoder', '~> 1.3', '>= 1.3.1'
 gem 'heroku', '~> 3.42', '>= 3.42.44'
+gem 'aws-sdk', '~> 2.2', '>= 2.2.32'
 gem 'rails_12factor', group: :production
 
 group :development, :test do

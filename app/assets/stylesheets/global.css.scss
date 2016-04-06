@@ -52,6 +52,26 @@ button, .button {
 	}
 }
 
+button {
+	border: none;
+	outline: none;
+	background: $red;
+	color: white;
+	padding: 1rem 3.5rem;
+	min-width: 100px;
+	border-radius: .5rem;
+}
+
+.button-danger {
+	border: none;
+	outline: none;
+	background: $red;
+	color: white;
+	padding: 1rem 3.5rem;
+	min-width: 100px;
+	border-radius: .5rem;
+}
+
 .button {
 	color: white;
 	margin: 2rem 0;

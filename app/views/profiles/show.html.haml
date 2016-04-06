@@ -5,20 +5,28 @@
 			.row
 				.col-md-4
 					= image_tag @profile.avatar.url(:medium)
+					.table-responsive
+						%table.table
+							%tbody
+								%tr
+									%td
+										%strong Username:
+									%td= @profile.username
+								%tr
+									%td
+										%strong Gender:
+									%td= @profile.gender.gender 
+								%tr		
+									%td
+										%strong Avg Rating:
+									%td{class: "star-rating", dscore: @avg_review}
+										%em= "#{@reviews.length} reviews"
+
 				.col-md-8  
 					#profile_info
 						.table-responsive
 							%table.table
 								%tbody
-									%tr
-										%td
-											%strong Avg Rating:
-										%td{class: "star-rating", dscore: @avg_review}
-											%em= "#{@reviews.length} reviews"
-									%tr
-										%td
-											%strong Username:
-										%td= @profile.username
 									%tr
 										%td
 											%strong Bio:
@@ -42,20 +50,21 @@
 									%tr
 										%td
 										%td
-											%br/
-											- if @profile.user_id == current_user.id
+											%br/	
+											- if @profile.user_id == current_user.id && @profile.trainer == true
 												= link_to "Edit My Record", edit_profile_path(@profile), class: "button"
+												= link_to "Create Appointment", new_appointment_path, class: "button"			
+
+											- elsif @profile.user_id == current_user.id
+												= link_to "Edit My Record", edit_profile_path(@profile), class: "button"	
 
 											- elsif user_signed_in?
 												=link_to "Review Me", new_profile_review_path(@profile), class: "button"
-																				
-
-
-		 
+	- if @profile.trainer == true 
 		/ Nav tabs
 		%ul.nav.nav-tabs{:role => "tablist"}
 			%li.active{:role => "presentation"}
-				%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointments", :role => "tab"} Appointments
+				%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
 			%li{:role => "presentation"}
 				%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews
 			%li{:role => "presentation"}
@@ -66,7 +75,7 @@
 				%a{"aria-controls" => "certifications", "data-toggle" => "tab", :href => "#certifications", :role => "tab"} Certifications				
 		/ Tab panes
 		.tab-content
-			#appointments.tab-pane.active{:role => "tabpanel"} 
+			#appointment.tab-pane.active{:role => "tabpanel"} 
 				%table.table.table-hover
 					%thead
 						%tr
@@ -82,7 +91,6 @@
 								%td= appointment.date
 								%td= appointment.active
 								%td= link_to 'View', appointment_path(appointment)
-				=link_to "New Appt", new_appointment_path
 
 			#locations.tab-pane{:role => "tabpanel"}
 				%table.table.table-hover
@@ -92,8 +100,9 @@
 							%th City
 							%th State
 							%th Zip
-							%th Loc Type
-							%th{:colspan => "2"}
+							%th Location Type
+							%th View Location
+							%th{:colspan => "6"}
 					%tbody
 						- @profile.profile_locations.each do |profile_locations|
 							%tr
@@ -102,6 +111,7 @@
 								%td= profile_locations.location.state
 								%td= profile_locations.location.zip
 								%td= profile_locations.location_type.type_name
+								%td= link_to 'View', location_path(profile_locations.location)					
 			#reviews.tab-pane{:role => "tabpanel"} 
 				%table.table.table-hover
 					%thead
@@ -114,7 +124,6 @@
 							%tr
 								%td{class: "star-rating", dscore: review.rating}
 								%td= review.comment
-				=link_to "Review Me", new_profile_review_path(@profile)
 			#workouts.tab-pane{:role => "tabpanel"} 	
 				%table.table.table-hover
 					%thead
