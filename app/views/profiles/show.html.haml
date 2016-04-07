@@ -152,10 +152,12 @@
 
 :javascript
 		$('.star-rating').raty({
-				path: '/assets/',
+				path: '/asset_path/',
 				readOnly: true,
 				score: function() {
 						return $(this).attr('dscore');
 				}
 		}); 
+
+"data-image" => "#{asset_path('fitchcircle.png')}"
 
