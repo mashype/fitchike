@@ -152,7 +152,7 @@
 
 :javascript
 		$('.star-rating').raty({
-				path: '/asset_path/',
+				path: "#{asset_path}",
 				readOnly: true,
 				score: function() {
 						return $(this).attr('dscore');
