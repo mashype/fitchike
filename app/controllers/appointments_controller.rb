@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@appointments = Appointment.where(active: "TRUE")
+		@appointments = Appointment.where(active: "TRUE").order("created_at DESC")
 	end
 
 	def show

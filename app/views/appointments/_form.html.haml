@@ -4,8 +4,8 @@
 		=f.input :comments
 	.col-md-4
 		=f.input :date
-		=f.association :length, label_method: :appointment_length, value_method: :id, include_blank: false
 		=f.input :price
+		=f.association :length, label_method: :appointment_length, value_method: :id, include_blank: false
 		=f.association :profile, :as => :collection_select, collection: Profile.where( user_id: current_user ), label_method: :username, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, :label => "Select Your Profile"
 		=f.input :active
 	=f.button :submit, class: "button"

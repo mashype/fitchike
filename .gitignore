@@ -14,3 +14,4 @@
 /tmp
 /config/initializers/stripe.rb
 /config/aws.yml
+/config/secrets.yml
