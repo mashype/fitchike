@@ -152,12 +152,9 @@
 
 :javascript
 		$('.star-rating').raty({
-				path: '/app/assets/images/',
+				path: "#{asset_path}",
 				readOnly: true,
 				score: function() {
 						return $(this).attr('dscore');
 				}
 		}); 
-
-
-
