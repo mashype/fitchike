@@ -152,9 +152,10 @@
 
 :javascript
 		$('.star-rating').raty({
-				path: "#{asset_path}",
+				path: '/assets/',
 				readOnly: true,
 				score: function() {
 						return $(this).attr('dscore');
 				}
 		}); 
+
