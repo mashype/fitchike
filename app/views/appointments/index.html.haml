@@ -1,7 +1,8 @@
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
 	= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{request.location.latitude}%2C#{request.location.longitude}"
-	$p= request.location.latitude
+	%p= request.location.latitude
+	%p= request.location.longitude
 	%br/
 	#appointments.transitions-enabled
 		- unless @appointments.blank?
