@@ -53,7 +53,8 @@
 
   class ActionDispatch::Request
   def remote_ip
-    "71.212.123.5" # ipd home (Denver,CO or Renton,WA)                                                                                                                                                                                                                                                                        
+    "71.194.131.16" # seths house
+    # "71.212.123.5" # ipd home (Denver,CO or Renton,WA)                                                                                                                                                                                                                                                                        
     # "208.87.35.103" # websiteuk.com -- Nassau, Bahamas                                                                                                                                                                                                                                                                      
     # "50.78.167.161" # HOL Seattle, WA                                                                                                                                                                                                                                                                                       
   end

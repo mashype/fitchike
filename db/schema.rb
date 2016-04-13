@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413032021) do
+ActiveRecord::Schema.define(version: 20160413211148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160413032021) do
     t.string   "confirmation_temp"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "email"
+    t.string   "card_token"
   end
 
   create_table "genders", force: :cascade do |t|

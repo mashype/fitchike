@@ -1,33 +1,38 @@
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
-	.table-responsive
-		= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{current_user.latitude}%2C#{current_user.longitude}"
-	%br/
-	#appointments.transitions-enabled
-		- unless @appointments.blank?
-			- @appointments.each do |appointment|
-				%a{ href: (url_for [appointment])}
-					.box.panel.panel-default
-						.panel-heading
-							%h2= appointment.title
-						.panel-body
-							.table-responsive
-								%tr
-								.col-sm-6
-									.img
-										= image_tag appointment.profile.avatar.url(:medium)
-								.col-sm-6
-									%strong Price:
-									%price= number_to_currency(appointment.price, unit:"$")		
-									%br/
-									%strong Length:
-									%price= appointment.length.appointment_length	
-						.panel-footer
-							.user= appointment.profile.username
+	.panel.panel-default
+		.panel-body
+			.row
+				.col-md-8	
+					#appointments.transitions-enabled
+						- unless @appointments.blank?
+							- @appointments.each do |appointment|
+								%a{ href: (url_for [appointment])}
+									.box.panel.panel-default
+										.panel-heading
+											%h2= appointment.title
+										.panel-body
+											.table-responsive
+												%tr
+												.col-sm-6
+													.img
+														= image_tag appointment.profile.avatar.url(:medium)
+												.col-sm-6
+													%strong Price:
+													%price= number_to_currency(appointment.price, unit:"$")		
+													%br/
+													%strong Length:
+													%price= appointment.length.appointment_length	
+										.panel-footer
+											.user= appointment.profile.username
 
-		- else 
-			%p Sorry, but all our appointments are totally booked up right now.
+						- else 
+							%p Sorry, but all our appointments are totally booked up right now.
 
+				.col-md-4
+					#appointments.map
+					= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=14&markers=#{current_user.latitude}%2C#{current_user.longitude}"
+				
 :javascript
 		$('.star-rating').raty({
 				path: '/assets/',
@@ -36,4 +41,5 @@
 						return $(this).attr('dscore');
 				}
 		}); 
+
 

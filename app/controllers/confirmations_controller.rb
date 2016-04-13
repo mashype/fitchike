@@ -18,30 +18,27 @@ class ConfirmationsController < ApplicationController
   end
 
   def create
-    @confirmation = Confirmation.new(confirmation_params)
+    @confirmation = Confirmation.new confirmation_params.merge(email: stripe_params["stripeEmail"],
+                                                               card_token: stripe_params["stripeToken"])
     @confirmation.user_id = current_user.id
     @confirmation.appointment_id = @appointment.id
-
-
-    respond_to do |format|
-      if @confirmation.save
-        format.html { redirect_to @appointment, notice: 'Confirmation was successfully created.' }
-        format.json { render :show, status: :created, location: @confirmation }
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
-    end
+    raise "Please, check registration errors" unless @registration.valid?
+    @confirmation.process_payment
+    @confirmation.save
+    redirect_to @appointment, notice: 'Registration was successfully created.'
+  
+  rescue
+    flash[:error] = e.message
+    render :new
   end
+
 
   def update
     respond_to do |format|
       if @confirmation.update(confirmation_params)
         format.html { redirect_to @confirmation, notice: 'Confirmation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @confirmation }
       else
         format.html { render :edit }
-        format.json { render json: @confirmation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -50,7 +47,6 @@ class ConfirmationsController < ApplicationController
     @confirmation.destroy
     respond_to do |format|
       format.html { redirect_to confirmations_url, notice: 'Confirmation was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -59,11 +55,15 @@ class ConfirmationsController < ApplicationController
       @confirmation = Confirmation.find(params[:id])
     end
 
+    def stripe_params
+      params.permit :stripeEmail, :stripeToken
+    end
+
     def set_appointment
       @appointment = Appointment.find(params[:appointment_id])
     end
 
     def confirmation_params
-      params.require(:confirmation).permit(:user_id, :appointment_id, :confirmation_temp)
+      params.require(:confirmation).permit(:user_id, :appointment_id, :email, :card_token, :utf8, :authenticity_token, :confirmation, :stripeTokenType, appointment_id:confirmation_temp)
     end
 end
