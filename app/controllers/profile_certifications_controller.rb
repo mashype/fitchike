@@ -1,14 +1,10 @@
 class ProfileCertificationsController < ApplicationController
   before_action :set_profile_certification, only: [:show, :edit, :update, :destroy]
 
-  # GET /profile_certifications
-  # GET /profile_certifications.json
   def index
     @profile_certifications = ProfileCertification.all
   end
 
-  # GET /profile_certifications/1
-  # GET /profile_certifications/1.json
   def show
   end
 

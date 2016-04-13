@@ -4,7 +4,7 @@ Geocoder.configure(
   :lookup => :google,
 
   # IP address geocoding service (see below for supported options):
-  :ip_lookup => :freegeoip,
+  :ip_lookup => :ipinfo_io,
 
   # to use an API key:
   #:api_key => "...",
