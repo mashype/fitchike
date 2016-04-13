@@ -1,8 +1,7 @@
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
-	%p= current_user.current_sign_in_ip
-	%p= request.location
-
+	.table-responsive
+		= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{current_user.latitude}%2C#{current_user.longitude}"
 	%br/
 	#appointments.transitions-enabled
 		- unless @appointments.blank?
@@ -13,7 +12,6 @@
 							%h2= appointment.title
 						.panel-body
 							.table-responsive
-
 								%tr
 								.col-sm-6
 									.img
