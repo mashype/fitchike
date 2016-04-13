@@ -12,5 +12,6 @@ class ApplicationController < ActionController::Base
 	    request.location
 	  end
 	end
+	
 end
 
