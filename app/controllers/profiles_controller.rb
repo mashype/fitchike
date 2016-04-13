@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  
 
   def index
     @profiles = Profile.all
@@ -69,4 +70,5 @@ class ProfilesController < ApplicationController
       profile_workouts_attributes: [:id, :profile_id, :workout_id, :rating, :_destroy])
     end
 end
+
 

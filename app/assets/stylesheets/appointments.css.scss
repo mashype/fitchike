@@ -29,13 +29,17 @@ h2 {
   .box {
 	  background: $light_gray;
 	  margin: 10px;
-	  width: 300px;
+	  width: 350px;
 	  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
 	  border-radius: 7px;
 	  text-align: center;
+	  .panel-body {
+	 	  padding: 10px; 
+	 	  text-align: left;
+	  }
 	  img {
-	 	  padding-left: 0px; 
-	 		padding-right: 10px;
+	 	  padding-left: 5px; 
+	 		padding-right: 5px;
 	  	width: 100%;
 	  	height: auto;
 	  }

@@ -1,5 +1,7 @@
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
+	= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{request.location.latitude}%2C#{request.location.longitude}"
+	$p= request.location.latitude
 	%br/
 	#appointments.transitions-enabled
 		- unless @appointments.blank?
@@ -10,20 +12,17 @@
 							%h2= appointment.title
 						.panel-body
 							.table-responsive
-								%table.table
-									%tbody
-										%tr
-										.col-sm-5
-											.img
-												= image_tag appointment.profile.avatar.url(:medium)
-										.col-sm-7
 
-											%br/
-											%strong Price:
-											%price= number_to_currency(appointment.price, unit:"$")		
-											%br/
-											%strong Length:
-											%price= appointment.length.appointment_length	
+								%tr
+								.col-sm-6
+									.img
+										= image_tag appointment.profile.avatar.url(:medium)
+								.col-sm-6
+									%strong Price:
+									%price= number_to_currency(appointment.price, unit:"$")		
+									%br/
+									%strong Length:
+									%price= appointment.length.appointment_length	
 						.panel-footer
 							.user= appointment.profile.username
 

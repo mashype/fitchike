@@ -49,6 +49,10 @@
 										%td= @profile.trainer
 									%tr
 										%td
+											%strong Admin:
+										%td= @profile.user.admin										
+									%tr
+										%td
 										%td
 											%br/	
 											- if @profile.user_id == current_user.id && @profile.trainer == true
@@ -96,16 +100,18 @@
 				%table.table.table-hover
 					%thead
 						%tr
+							%th
 							%th Address
 							%th City
 							%th State
 							%th Zip
 							%th Location Type
 							%th View Location
-							%th{:colspan => "6"}
+							%th{:colspan => "7"}
 					%tbody
 						- @profile.profile_locations.each do |profile_locations|
 							%tr
+								%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{profile_locations.location.latitude}%2C#{profile_locations.location.longitude}"
 								%td= profile_locations.location.address_1
 								%td= profile_locations.location.city
 								%td= profile_locations.location.state

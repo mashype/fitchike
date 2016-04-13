@@ -43,10 +43,7 @@
 											%td
 												%form{:action => "", :method => "POST"}
 													%script.stripe-button{"data-amount" => (@appointment.price*100), "data-description" => @appointment.title , "data-image" => "#{asset_path('fitchcircle.png')}", "data-key" => "pk_test_vG3uKuRBa3SChlHNZBIXzGam", "data-locale" => "auto", "data-name" => "Fitchike", :src => "https://checkout.stripe.com/checkout.js"}
-
-
-		%table.table.table-hover
-
+		%table.table
 			%tbody	
 				- unless @confirmations.blank?
 					%thead
@@ -63,3 +60,4 @@
 				- else 
 					%h2 Be the first to book
 					%p No others are booked into this session yet.
+

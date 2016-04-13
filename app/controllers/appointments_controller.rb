@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
 
 	def index
 		@appointments = Appointment.where(active: "TRUE").order("created_at DESC")
-	end
+  end
 
 	def show
 		@confirmations = Confirmation.where(appointment_id: @appointment.id).order("created_at DESC")
