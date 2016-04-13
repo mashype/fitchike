@@ -51,9 +51,4 @@
     }
   }
 
-  class ActionDispatch::Request
-    def remote_ip
-      "84.34.156.155" # fake ip for example                                                                                                                                                                                                                                                                                    
-    end
-  end
 end

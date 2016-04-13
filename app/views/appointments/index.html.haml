@@ -1,6 +1,7 @@
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
 	%p= current_user.current_sign_in_ip
+	%p= request.location
 
 	%br/
 	#appointments.transitions-enabled
