@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  geocoded_by :lookup_ip_location
-	after_validation :geocode
+#  geocoded_by :current_sign_in_ip
+#	after_validation :geocode
 
   has_many :appointments
   has_many :confirmations
