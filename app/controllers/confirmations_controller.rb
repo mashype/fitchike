@@ -18,20 +18,19 @@ class ConfirmationsController < ApplicationController
   end
 
   def create
-    @confirmation = Confirmation.new confirmation_params.merge(email: stripe_params["stripeEmail"],
-                                                               card_token: stripe_params["stripeToken"])
+    @confirmation = Confirmation.new confirmation_params.merge(email: stripe_params["stripeEmail"], card_token: stripe_params["stripeToken"])
     @confirmation.user_id = current_user.id
     @confirmation.appointment_id = @appointment.id
-    raise "Please, check registration errors" unless @registration.valid?
+    raise "Please, check registration errors" unless @confirmation.valid?
     @confirmation.process_payment
     @confirmation.save
-    redirect_to @appointment, notice: 'Registration was successfully created.'
-  
-  rescue
+    redirect_to @appointment, :notice => 'Confirmation was successfully updated.'
+
+
+  rescue Exception => e
     flash[:error] = e.message
     render :new
   end
-
 
   def update
     respond_to do |format|
@@ -56,7 +55,7 @@ class ConfirmationsController < ApplicationController
     end
 
     def stripe_params
-      params.permit :stripeEmail, :stripeToken
+      params.permit :stripeEmail, :stripeToken, :appointment_id, :utf8, :authenticity_token, :confirmation, :stripeTokenType, :confirmation
     end
 
     def set_appointment
@@ -64,6 +63,6 @@ class ConfirmationsController < ApplicationController
     end
 
     def confirmation_params
-      params.require(:confirmation).permit(:user_id, :appointment_id, :email, :card_token, :utf8, :authenticity_token, :confirmation, :stripeTokenType, appointment_id:confirmation_temp)
+      params.require(:confirmation).permit(:user_id, :appointment_id, :email, :card_token, :appointment_id, :confirmation_temp)
     end
 end
