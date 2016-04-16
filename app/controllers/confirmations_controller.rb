@@ -22,7 +22,7 @@ class ConfirmationsController < ApplicationController
     @confirmation.user_id = current_user.id
     @confirmation.appointment_id = @appointment.id
     raise "Please, check registration errors" unless @confirmation.valid?
-    @confirmation.process_payment
+    @confirmation.process_payment stripe_params['stripeToken']
     @confirmation.save
     redirect_to @appointment, :notice => 'Confirmation was successfully updated.'
 

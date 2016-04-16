@@ -32,7 +32,7 @@
 
 				.col-md-4
 					#appointments.map
-					= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=14&markers=#{current_user.latitude}%2C#{current_user.longitude}"
+					= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=14&markers=#{session[:latitude]}%2C#{session[:longitude]}"
 /%ul
 /	- for location in current_user.location.nearbys
 /		%li
