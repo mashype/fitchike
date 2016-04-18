@@ -9,11 +9,12 @@
 					%li= msg
 	.panel-body
 		.col-md-8
-			= f.input :username, input_html: { class: 'form-control'}
-			= f.input :bio, input_html: { class: 'form-control'}
-			= f.input :zip, input_html: { class: 'form-control'}
-			= f.input :trainer
-			= f.association :gender, label_method: :gender, value_method: :id, include_blank: false
+			#profile_update
+				= f.input :username, input_html: { class: 'form-control'}
+				= f.input :bio, input_html: { class: 'form-control'}
+				= f.input :zip, input_html: { class: 'form-control'}
+				= f.input :trainer
+				= f.association :gender, label_method: :gender, value_method: :id, include_blank: false
 		.col-md-4
 			= image_tag @profile.avatar.url(:medium)
 			= f.input :avatar, input_html: { class: 'form-control'}
@@ -47,7 +48,8 @@
 						= f.simple_fields_for :profile_certifications do |profilecertification|
 							= render 'profile_certification_fields', f: profilecertification
 					= link_to_add_association 'Add Additional Certifications', f, :profile_certifications, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-certifications ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_certification| profile_certification.build_certification; profile_certification }
-
+	%br/
 	.form-actions
 		= f.button :submit
+		= link_to 'Cancel', profile_path(@profile), class: "button"
 

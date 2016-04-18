@@ -59,16 +59,21 @@ $red: #B11322;
 #appointment, #reviews, #workouts, #certifications, #locations {
 	background: $light_gray;
 	min-height: 300px;
+	border-radius: 10px;
 	padding: 2em 8%;
 }
 
 #workout_update, #certification_update, #location_update {
-	background: white;
+	background: $light_gray;
 	min-height: 300px;
+	border-radius: 10px;
 	padding: 2em 4%;
 }
 
 #profile_update {
-	background: $light_gray;
+	background: $blue;
+	color: white;
+	min-height: 300px;
+	border-radius: 10px;
 	padding: 2em 8%;
 }

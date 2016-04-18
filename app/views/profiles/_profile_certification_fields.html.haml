@@ -9,6 +9,6 @@
 					%th{:colspan =>3}
 			%tbody
 				%tr
-					%td= f.association :certification, label_method: :cert_name, value_method: :id, label: false, include_blank: false
+					%td= f.association :certification, label_method: :cert_name, value_method: :id, label: false, include_blank: false, collection: Certification.order('cert_name')
 					%td= f.input :cert_year, label: false
 					%td= link_to_remove_association "remove", f
