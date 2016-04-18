@@ -87,7 +87,7 @@
 						- @appointments.each do |appointment|
 							%tr
 								%td= appointment.title
-								%td= appointment.date
+								%td= appointment.end_date
 								%td= appointment.active
 								%td= link_to 'View', appointment_path(appointment)
 
