@@ -5,5 +5,7 @@ class Appointment < ActiveRecord::Base
 	belongs_to :location
 
 	has_many :confirmations
+
+	validates_presence_of :title, :comments
 end
 

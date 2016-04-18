@@ -48,9 +48,11 @@ class AppointmentsController < ApplicationController
 
 	def find_appointment
 		@appointment = Appointment.find(params[:id])
+		@profile = Profile.where(id: @appointment.profile_id)
 	end
 
 	def appointment_params
-		params.require(:appointment).permit(:title, :comments, :price, :date, :active, :length_id, :profile_id, :location_id)
+		params.require(:appointment).permit(:title, :comments, :price, :end_date, :active, :length_id, :profile_id, :location_id)
 	end
 end
+
