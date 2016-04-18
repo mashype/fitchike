@@ -4,6 +4,10 @@ class AppointmentsController < ApplicationController
 
 	def index
 		@appointments = Appointment.where(active: "TRUE").order("created_at DESC")
+		@hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
+      marker.lat appointment.location.latitude
+      marker.lng appointment.location.longitude
+    end
   end
 
 	def show
@@ -47,6 +51,6 @@ class AppointmentsController < ApplicationController
 	end
 
 	def appointment_params
-		params.require(:appointment).permit(:title, :comments, :price, :date, :active, :length_id, :profile_id)
+		params.require(:appointment).permit(:title, :comments, :price, :date, :active, :length_id, :profile_id, :location_id)
 	end
 end

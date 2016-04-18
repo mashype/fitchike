@@ -47,7 +47,10 @@
 										%td
 										%td
 											%br/	
-											- if @profile.user_id == current_user.id && @profile.trainer == true
+											- if !user_signed_in?
+												=link_to "Sign Up To Book Appointments", new_profile_review_path(@profile), class: "button"
+											
+											- elsif @profile.user_id == current_user.id && @profile.trainer == true
 												= link_to "Edit My Record", edit_profile_path(@profile), class: "button"
 												= link_to "Create Appointment", new_appointment_path, class: "button"			
 
@@ -56,7 +59,7 @@
 
 											- elsif user_signed_in?
 												=link_to "Review Me", new_profile_review_path(@profile), class: "button"
-	- if @profile.trainer == true 
+	- if @profile.trainer == true && user_signed_in?
 		/ Nav tabs
 		%ul.nav.nav-tabs{:role => "tablist"}
 			%li.active{:role => "presentation"}
@@ -150,7 +153,7 @@
 
 :javascript
 		$('.star-rating').raty({
-				path: "{asset_path}",
+				path: '/assets/',
 				readOnly: true,
 				score: function() {
 						return $(this).attr('dscore');

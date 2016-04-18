@@ -2,7 +2,16 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index
-    @locations = Location.all
+    if params[:search].present?
+      @locations = Location.near(params[:search], 50)
+    else
+      @locations = Location.all
+    end
+    @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
+      marker.lat location.latitude
+      marker.lng location.longitude
+      marker.infowindow location.address_1
+    end
   end
 
   def show
@@ -52,9 +61,14 @@ class LocationsController < ApplicationController
   private
     def set_location
       @location = Location.find(params[:id])
+      @hash = Gmaps4rails.build_markers(@location) do |location, marker|
+        marker.lat location.latitude
+        marker.lng location.longitude
+      end
     end
 
     def location_params
       params.require(:location).permit(:address_1, :address_2, :city, :state, :zip, :latitude, :longitude)
     end
 end
+

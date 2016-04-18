@@ -1,3 +1,7 @@
+%script{:src => "//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="}
+%script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"}
+%script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js", :type => "text"}
+
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
 	.panel.panel-default
@@ -23,6 +27,9 @@
 													%br/
 													%strong Length:
 													%price= appointment.length.appointment_length	
+													%br/
+													%strong Location:
+													%price= appointment.location.address_1	
 										.panel-footer
 											.user= appointment.profile.username
 
@@ -32,13 +39,17 @@
 
 				.col-md-4
 					#appointments.map
-					= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=14&markers=#{session[:latitude]}%2C#{session[:longitude]}"
+					%div{:style => "width: 400px;"}
+						#map{:style => "width: 400px; height: 400px;"}	
+
+					
 /%ul
 /	- for location in current_user.location.nearbys
 /		%li
 /			= link_to location.address, location
 /			(#{location.distance.round(2)}miles)
-		
+
+= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=14&markers=#{session[:latitude]}%2C#{session[:longitude]}"
 
 :javascript
 		$('.star-rating').raty({
@@ -49,4 +60,11 @@
 				}
 		}); 
 
+:javascript
+	handler = Gmaps.build('Google');
+	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+		markers = handler.addMarkers(#{raw @hash.to_json});
+		handler.bounds.extendWith(markers);
+		handler.fitMapToBounds();
+	});
 

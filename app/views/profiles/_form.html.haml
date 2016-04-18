@@ -21,7 +21,7 @@
 		.row
 			.col-md-6
 				%h3 Add Your Favorite Workouts
-				#workouts
+				#workout_update
 					%fieldset#profile-workouts
 						%ol
 							= f.simple_fields_for :profile_workouts do |profileworkout|
@@ -29,7 +29,7 @@
 						= link_to_add_association 'Add Additional Workout Types', f, :profile_workouts, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-workouts ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_workout| profile_workout.build_workout; profile_workout }
 			.col-md-6
 				%h3 List Your Certifications
-				#certifications
+				#certification_update
 					%fieldset#profile-certifications
 						%ol
 							= f.simple_fields_for :profile_certifications do |profilecertification|
@@ -37,7 +37,7 @@
 						= link_to_add_association 'Add Additional Certifications', f, :profile_certifications, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-certifications ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_certification| profile_certification.build_certification; profile_certification }
 		.row
 			%h3 Select Your Workout Locations
-			#locations
+			#location_update
 				%fieldset#profile-locations
 					%ol
 						= f.simple_fields_for :profile_locations do |profilelocation|

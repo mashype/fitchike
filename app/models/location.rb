@@ -9,6 +9,8 @@ class Location < ActiveRecord::Base
 	after_validation :geocode, :if => :address_1_changed?
 
 	has_many :profile_locations
-	has_many :locations, through: :profile_locations
+	has_many :profiles, through: :profile_locations
+
+	has_many :appointments
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416211508) do
+ActiveRecord::Schema.define(version: 20160418160245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,22 +19,26 @@ ActiveRecord::Schema.define(version: 20160416211508) do
   create_table "appointments", force: :cascade do |t|
     t.string   "title"
     t.text     "comments"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "price"
     t.string   "date"
     t.boolean  "active"
     t.integer  "profile_id"
     t.integer  "length_id"
+    t.integer  "location_id"
   end
 
   add_index "appointments", ["profile_id"], name: "index_appointments_on_profile_id", using: :btree
 
   create_table "certifications", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "cert_name"
+    t.string   "cert_abbreviation"
+    t.string   "website"
+    t.text     "cert_description"
   end
 
   create_table "confirmations", force: :cascade do |t|

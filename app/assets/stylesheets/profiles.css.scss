@@ -3,33 +3,36 @@ $light_gray: #C0C1C1;
 $blue: #0B5BAE;
 $red: #B11322;
 
-
 #profiles {
   margin: 0 auto;
   width: 100%;
   .box {
+	  background: $light_gray;
 	  margin: 10px;
 	  width: 350px;
-	  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
 	  border-radius: 7px;
 	  text-align: center;
+	  .panel-body {
+	 	  padding: 10px; 
+	 	  text-align: left;
+	  }
 	  img {
-	  	max-width: 100%;
+	 	  padding-left: 5px; 
+	 		padding-right: 5px;
+	  	width: 100%;
 	  	height: auto;
 	  }
 	  h2 {
-	  	font-size: 22px;
+	  	@include bold_font;
+	  	font-size: 14px;
 	  	margin: 0;
-	  	padding: 25px 10px;
+		  text-align: center;
+	  	padding: 5px 5px;
+	  	color: #474747;
 	  	a {
 				color: #474747;
 	  	}
-	  }
-	  .user {
-	  	font-size: 12px;
-	  	border-top: 1px solid #EAEAEA;
-			padding: 15px;
-			margin: 0;
 	  }
 	}
 }
@@ -53,8 +56,19 @@ $red: #B11322;
 	}
 }
 
-#profiles, #appointment, #reviews, #workouts, #certifications, #locations {
+#appointment, #reviews, #workouts, #certifications, #locations {
 	background: $light_gray;
 	min-height: 300px;
+	padding: 2em 8%;
+}
+
+#workout_update, #certification_update, #location_update {
+	background: white;
+	min-height: 300px;
+	padding: 2em 4%;
+}
+
+#profile_update {
+	background: $light_gray;
 	padding: 2em 8%;
 }

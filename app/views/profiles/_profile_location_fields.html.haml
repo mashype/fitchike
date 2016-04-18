@@ -1,10 +1,11 @@
 %li.control-group.nested-fields
 	.controls
+		= f.simple_fields_for :location do |profile_location_location|
+			=profile_location_location.input_field :address_1, :placeholder => "Address Line 1"
+			=profile_location_location.input_field :address_2, :placeholder => "Address Line 2"
+			=profile_location_location.input_field :city, :placeholder => "City"
+			=profile_location_location.input_field :state, :placeholder => "State"
+			=profile_location_location.input_field :zip, :placeholder => "Zip"
 		= f.association :location_type, label_method: :type_name, value_method: :id, include_blank: false
-		= f.fields_for :location do |profile_location_location|
-			=profile_location_location.text_field :address_1, label: 'Address 1'
-			=profile_location_location.text_field :address_2
-			=profile_location_location.text_field :city
-			=profile_location_location.text_field :state
-			=profile_location_location.text_field :zip
+		= f.input :guests, :label => "Accepts Guests"
 		= link_to_remove_association "remove", f

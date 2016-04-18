@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
+  before_action :verify_is_admin
 
   def index
     @workouts = Workout.all
@@ -52,6 +53,10 @@ class WorkoutsController < ApplicationController
 
     def workout_params
       params.require(:workout).permit(:workout_name)
+    end
+
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
     end
 end
 

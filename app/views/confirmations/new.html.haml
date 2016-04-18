@@ -1,3 +1,30 @@
-%h1 New Confirmation
-= render 'form'
-= link_to 'Back', appointment_path(@appointment)
+
+.wrapper_with_padding
+	.table-responsive
+		%table.table
+			%tbody
+				.row
+					%tr
+						.col-md-4
+						%td
+							= link_to image_tag('fitchlogo.png'), root_path, id: "logo"
+						.col-md-8
+						%td
+							%h1 Confirm Your Appointment Now
+				.row
+					%tr		
+						%td
+							%strong TRAINER:
+						%td= @appointment.profile.username 	
+					%tr
+						%td
+							%strong TOTAL PRICE:
+						%td= number_to_currency(@appointment.price, unit:"$")
+					%tr
+						%td
+							%strong APPOINTMENT LENGTH:
+						%td= @appointment.length.appointment_length
+				%tr
+					%td
+						= render 'form'
+						= link_to 'Cancel Request', appointment_path(@appointment)
