@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
     if params[:search].present?
       @locations = Location.near(params[:search], 50)
     else
-      @locations = Location.all
+      @locations = Location.near([session[:latitude], session[:longitude]], 50)
     end
     @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
       marker.lat location.latitude

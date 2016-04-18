@@ -12,10 +12,6 @@
 									%td
 										%strong Username:
 									%td= @profile.username
-								%tr
-									%td
-										%strong Gender:
-									%td= @profile.gender.gender 
 								%tr		
 									%td
 										%strong Avg Rating:
@@ -38,11 +34,7 @@
 									%tr
 										%td
 											%strong Trainer:
-										%td= @profile.trainer
-									%tr
-										%td
-											%strong Admin:
-										%td= @profile.user.admin										
+										%td= @profile.trainer									
 									%tr
 										%td
 										%td
@@ -51,7 +43,7 @@
 												=link_to "Sign Up To Book Appointments", new_profile_review_path(@profile), class: "button"
 											
 											- elsif @profile.user_id == current_user.id && @profile.trainer == true
-												= link_to "Edit My Record", edit_profile_path(@profile), class: "button"
+												= link_to "Edit My Profile", edit_profile_path(@profile), class: "button"
 												= link_to "Create Appointment", new_appointment_path, class: "button"			
 
 											- elsif @profile.user_id == current_user.id

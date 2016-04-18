@@ -2,48 +2,49 @@
 %script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"}
 %script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js", :type => "text"}
 
-= form_tag locations_path, :method => :get do
-  %p= text_field_tag :search, params[:search]
-  %p= submit_tag "search near", :search => nil
+.wrapper_with_padding
+  %h2 Update You Search Zip Code
+  = form_tag locations_path, :method => :get do
+    %p= text_field_tag :search, params[:search]
+    %p= submit_tag "search near", :search => nil
 
-
-%h1 Listing Locations
-%table
-  %thead
-    %tr
-      %th Address 1
-      %th Address 2
-      %th City
-      %th State
-      %th Zip
-      %th Lat
-      %th Lon
-      %th{:colspan => "3"}
-  %tbody
-    - @locations.each do |location|
+  %h2 Available Locations
+  %table
+    %thead
       %tr
-        %td= location.address_1
-        %td= location.address_2
-        %td= location.city
-        %td= location.state
-        %td= location.zip
-        %td= location.latitude
-        %td= location.longitude
-        %td= link_to 'Show', location
-        %td= link_to 'Edit', edit_location_path(location)
-        %td= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Location', new_location_path
+        %th Address 1
+        %th Address 2
+        %th City
+        %th State
+        %th Zip
+        %th Lat
+        %th Lon
+        %th{:colspan => "3"}
+    %tbody
+      - @locations.each do |location|
+        %tr
+          %td= location.address_1
+          %td= location.address_2
+          %td= location.city
+          %td= location.state
+          %td= location.zip
+          %td= location.latitude
+          %td= location.longitude
+          %td= link_to 'Show', location
+          %td= link_to 'Edit', edit_location_path(location)
+          %td= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+  = link_to 'New Location', new_location_path
 
 
-%div{:style => "width: 800px;"}
-  #map{:style => "width: 800px; height: 400px;"}
+  %div{:style => "width: 800px;"}
+    #map{:style => "width: 800px; height: 400px;"}
 
-:javascript
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(#{raw @hash.to_json});
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
+  :javascript
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{raw @hash.to_json});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
 
