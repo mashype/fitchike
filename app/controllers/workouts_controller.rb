@@ -3,7 +3,7 @@ class WorkoutsController < ApplicationController
   before_action :verify_is_admin
 
   def index
-    @workouts = Workout.all
+    @workouts = Workout.all.order("workout_name")
   end
 
   def show
