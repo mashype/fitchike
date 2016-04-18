@@ -3,6 +3,9 @@
 <p>
   <strong>Cert_Name:</strong>
   <%= @certification.cert_name %>
+  <%= @certification.cert_abbreviation %>
+  <%= @certification.cert_description %>
+  <%= @certification.website %>
 </p>
 
 <%= link_to 'Edit', edit_certification_path(@certification) %> |
