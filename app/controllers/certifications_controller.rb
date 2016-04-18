@@ -51,7 +51,7 @@ class CertificationsController < ApplicationController
     end
 
     def certification_params
-      params.require(:certification).permit(:cert_name)
+      params.require(:certification).permit(:cert_name, :cert_description, :cert_abbreviation, :website)
     end
 
     def verify_is_admin
