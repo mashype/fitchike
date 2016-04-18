@@ -15,7 +15,7 @@
 			%nav
 				- if user_signed_in?
 					= link_to "Change Password", edit_user_registration_path
-					= link_to "View My Profile", profile_path(current_user)
+					= link_to "View My Profile", profile_path(current_user.profile.id)
 					= link_to "Sign Out", destroy_user_session_path, method: :delete 
 				- else
 					%p=link_to "Sign In", new_user_session_path
