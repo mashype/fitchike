@@ -18,7 +18,7 @@ gem 'masonry-rails', '~> 0.2.4'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
 gem 'geocoder', '~> 1.3', '>= 1.3.1'
-gem 'gmaps4rails'
+gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem 'heroku', '~> 3.42', '>= 3.42.44'
 gem 'aws-sdk', '< 2.0'
 gem 'rails_12factor', group: :production

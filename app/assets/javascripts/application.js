@@ -11,10 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require masonry/jquery.masonry
+//= require jquery_ujs
 //= require cocoon
 //= require turbolinks
 //= require underscore
+//= require underscore
 //= require gmaps/google
+//= require_tree .
