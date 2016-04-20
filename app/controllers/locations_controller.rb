@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :verify_is_admin, only: [:index, :destroy]
 
   def index
     if params[:search].present?
@@ -68,6 +70,10 @@ class LocationsController < ApplicationController
 
     def location_params
       params.require(:location).permit(:address_1, :address_2, :city, :state, :zip, :latitude, :longitude)
+    end
+
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
     end
 end
 

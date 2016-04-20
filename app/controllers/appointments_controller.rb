@@ -3,7 +3,9 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@appointments = Appointment.where(active: "TRUE").order("created_at DESC")
+		location_ids = Location.near(session[:latitude], session[:longitude], 500).pluck(:id)
+		@appointments = Appointment.includes(:location).where(location_id: location_ids).where(active: "TRUE").order("created_at DESC")
+     
 		@hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
       marker.lat appointment.location.latitude
       marker.lng appointment.location.longitude
@@ -55,4 +57,3 @@ class AppointmentsController < ApplicationController
 		params.require(:appointment).permit(:title, :comments, :price, :end_date, :active, :length_id, :profile_id, :location_id)
 	end
 end
-

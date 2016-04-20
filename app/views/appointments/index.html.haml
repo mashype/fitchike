@@ -7,7 +7,7 @@
 	.panel.panel-default
 		.panel-body
 			.row
-				.col-md-8	
+				.col-md-9
 					#appointments.transitions-enabled
 						- unless @appointments.blank?
 							- @appointments.each do |appointment|
@@ -18,10 +18,9 @@
 										.panel-body
 											.table-responsive
 												%tr
-												.col-sm-6
-													.img
-														= image_tag appointment.profile.avatar.url(:medium)
-												.col-sm-6
+												.col-md-4.nopadding
+													= image_tag appointment.profile.avatar.url(:medium)
+												.col-sm-8
 													%strong Price:
 													%price= number_to_currency(appointment.price, unit:"$")		
 													%br/
@@ -29,18 +28,21 @@
 													%price= appointment.length.appointment_length	
 													%br/
 													%strong Location:
-													%price= appointment.location.address_1	
+													%price= appointment.location.address_1
+													%br/
+													%strong Trainer:
+													%price= appointment.profile.username													
 										.panel-footer
-											.user= appointment.profile.username
+											.user= appointment.profile.username		
 
 
 						- else 
 							%p Sorry, but all our appointments are totally booked up right now.
 
-				.col-md-4
-					#appointments.map
-					%div{:style => "width: 400px;"}
-						#map{:style => "width: 400px; height: 400px;"}	
+				.col-md-3
+					%img{:style => "width: 100%;"}
+						#map{:style => "width: 100%; height: 200px;"}	
+
 
 					
 /%ul
