@@ -3,14 +3,20 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		location_ids = Location.near(session[:latitude], session[:longitude], 500).pluck(:id)
-		@appointments = Appointment.includes(:location).where(location_id: location_ids).where(active: "TRUE").order("created_at DESC")
-     
+		if params[:search].present?
+			location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
+			@appointments = Appointment.includes(:location).where(location_id: location_ids).where(active: "TRUE").order("created_at DESC")
+    else
+			location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
+			@appointments = Appointment.includes(:location).where(location_id: location_ids).where(active: "TRUE").order("created_at DESC")
+    end
+
 		@hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
       marker.lat appointment.location.latitude
       marker.lng appointment.location.longitude
     end
   end
+
 
 	def show
 		@confirmations = Confirmation.where(appointment_id: @appointment.id).order("created_at DESC")

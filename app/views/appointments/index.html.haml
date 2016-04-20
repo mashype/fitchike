@@ -4,6 +4,7 @@
 
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
+	%br/
 	.panel.panel-default
 		.panel-body
 			.row
@@ -32,9 +33,6 @@
 													%br/
 													%strong Trainer:
 													%price= appointment.profile.username													
-										.panel-footer
-											.user= appointment.profile.username		
-
 
 						- else 
 							%p Sorry, but all our appointments are totally booked up right now.
@@ -42,16 +40,12 @@
 				.col-md-3
 					%img{:style => "width: 100%;"}
 						#map{:style => "width: 100%; height: 200px;"}	
+					%p 
+					= form_tag appointments_path, :method => :get do
+						%p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
+						%p= submit_tag "Refresh Search", :search => nil
 
 
-					
-/%ul
-/	- for location in current_user.location.nearbys
-/		%li
-/			= link_to location.address, location
-/			(#{location.distance.round(2)}miles)
-
-= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=14&markers=#{session[:latitude]}%2C#{session[:longitude]}"
 
 :javascript
 		$('.star-rating').raty({
