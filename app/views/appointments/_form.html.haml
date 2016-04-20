@@ -14,10 +14,12 @@
 				%tr
 					%td= f.association :profile, :as => :collection_select, collection: Profile.where( user_id: current_user ), label_method: :username, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, :label => "Select Your Profile"
 				%tr
-					%td= f.association :location, label_method: :address_1, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, :label => "Select The Location"
+					%td= f.association :location, :as => :collection_select, collection: Location.includes(:profile_locations).where(profile_locations: { profile_id: current_user }), label_method: :address_1, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, :label => "Select The Location"
+
 				%tr
 					%td= f.input :active
 
 	=f.button :submit, class: "button"
+
 
 
