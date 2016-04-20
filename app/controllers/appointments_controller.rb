@@ -3,10 +3,14 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+    location_ids = Location.
+      near(session[:latitude, session[:longitude], 50).
+      pluck(:id)
+
 		@appointments = Appointment.
-      join(:location).
-      where(active: "TRUE").order("created_at DESC").
-      where("earth_box(ll_to_earth(?, ?), ?) @> ll_to_earth(latitude, longitude)", session[:latitude], session[:longitude], 16093)
+      includes(:location).
+      where(location_id: location_ids).
+      where(active: "TRUE").order("created_at DESC")
      
 		@hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
       marker.lat appointment.location.latitude
