@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160420161658) do
+=======
+ActiveRecord::Schema.define(version: 20160420014013) do
+>>>>>>> 8853af1a59d71d0624562a81f5cb6f7f0748eaf1
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "cube"
+  enable_extension "earthdistance"
 
   create_table "appointments", force: :cascade do |t|
     t.string   "title"
