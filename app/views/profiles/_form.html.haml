@@ -38,10 +38,11 @@
 					= link_to_add_association 'Add Additional 	Locations', f, :profile_locations, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-locations ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_location| profile_location.build_location; profile_location }				
 			#workout_update.tab-pane{:role => "tabpanel"} 	
 				%fieldset#profile-workouts
-					%ol
-						= f.simple_fields_for :profile_workouts do |profileworkout|
-							= render 'profile_workout_fields', f: profileworkout
-					= link_to_add_association 'Add Additional Workout Types', f, :profile_workouts, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-workouts ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_workout| profile_workout.build_workout; profile_workout }
+					.form-horizontal
+						%ol
+							= f.simple_fields_for :profile_workouts do |profileworkout|
+								= render 'profile_workout_fields', f: profileworkout
+						= link_to_add_association 'Add Additional Workout Types', f, :profile_workouts, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-workouts ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_workout| profile_workout.build_workout; profile_workout }
 			#certification_update.tab-pane{:role => "tabpanel"} 	
 				%fieldset#profile-certifications
 					%ol
@@ -52,4 +53,5 @@
 	.form-actions
 		= f.button :submit
 		= link_to 'Cancel', profile_path(@profile), class: "button"
+
 

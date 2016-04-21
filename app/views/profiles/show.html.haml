@@ -34,7 +34,7 @@
 									%tr
 										%td
 											%strong DOB:
-										%td= @profile.dob		
+										%td= time_ago_in_words(@profile.dob)
 									%tr
 										%td
 											%strong Trainer:

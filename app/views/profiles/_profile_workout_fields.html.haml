@@ -1,14 +1,5 @@
 %li.control-group.nested-fields
 	.controls
-		%table
-			%thead
-				%tr
-					%th Workout
-					%th Rating
-					%th 
-					%th{:colspan =>3}
-			%tbody
-				%tr
-					%td= f.association :workout, label_method: :workout_name, value_method: :id, include_blank: false, label: false, collection: Workout.order('workout_name')
-					%td= f.input :rating, collection: 1..5, label: false
-					%td= link_to_remove_association "remove", f
+		= f.association :workout, label_method: :workout_name, value_method: :id, include_blank: false, collection: Workout.order('workout_name')
+		= f.input :rating, collection: 1..5
+		= link_to_remove_association "remove", f

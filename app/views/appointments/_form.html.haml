@@ -1,25 +1,26 @@
 = simple_form_for @appointment do |f|
-	.col-md-8
-		=f.input :title, input_html: { maxlength: 20 }, :label => "Appointment Title"
-		=f.input :comments, :label => "Appointment Description"
-	.col-md-4
-		%table
-			%tbody
-				%tr
-					%td= f.input :end_date, as: :date, :label => "Available Until"
-				%tr
-					%td= f.input :price, :label => "Price"
-				%tr
-					%td= f.association :length, label_method: :appointment_length, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, :label => "Appointment Length"
-				%tr
-					%td= f.association :profile, :as => :collection_select, collection: Profile.where( user_id: current_user ), label_method: :username, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, :label => "Select Your Profile"
-				%tr
-					%td= f.association :location, :as => :collection_select, collection: Location.includes(:profile_locations).where(profile_locations: { profile_id: current_user }), label_method: :address_1, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, :label => "Select The Location"
-
-				%tr
-					%td= f.input :active
-
-	=f.button :submit, class: "button"
-
+	.form-style-5
+		%form
+			%fieldset
+				%legend
+					%span.number 1
+					Appointment Info
+				=f.input :title, input_html: { maxlength: 20 }, :placeholder => "Appointment Title", label: false, type: "text"
+				=f.input :comments, :placeholder => "Appointment Description", label: false, type: "text"
+				=f.association :profile, :as => :collection_select, collection: Profile.where( user_id: current_user ), label_method: :username, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, label: false
+				=f.association :length, label_method: :appointment_length, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, label: false
+				= f.input :price, placeholder: "List Price", label: false
+			%fieldset
+				%legend
+					%span.number 2
+					Additional Location
+				= f.association :location, :as => :collection_select, collection: Location.includes(:profile_locations).where(profile_locations: { profile_id: current_user }), label_method: :address_1, value_method: :id, include_blank: false, :input_html => {:class => "input-small"}, placeholder: "Select The Location", label: false
+			%fieldset
+				%legend
+					%span.number 3
+					Available Until
+				= f.input :end_date, as: :date, label: false
+				= f.input :active
+			%input{:type => "submit", :value => "Create Appointment"}/
 
 

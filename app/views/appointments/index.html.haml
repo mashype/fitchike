@@ -22,17 +22,18 @@
 												.col-md-4.nopadding
 													= image_tag appointment.profile.avatar.url(:medium)
 												.col-sm-8
-													%strong Price:
-													%price= number_to_currency(appointment.price, unit:"$")		
-													%br/
-													%strong Length:
-													%price= appointment.length.appointment_length	
-													%br/
-													%strong Location:
-													%price= appointment.location.address_1
-													%br/
-													%strong Trainer:
-													%price= appointment.profile.username													
+													.box_text
+														%strong Price:
+														= number_to_currency(appointment.price, unit:"$")		
+														%br
+														%strong Length:
+														= appointment.length.appointment_length	
+														%br/
+														%strong Location:
+														= appointment.location.address_1
+														%br/
+														%strong Trainer:
+														= appointment.profile.username													
 
 						- else 
 							%p Sorry, but all our appointments are totally booked up right now.

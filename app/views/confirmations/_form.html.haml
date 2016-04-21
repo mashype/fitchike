@@ -1,17 +1,16 @@
 = simple_form_for([@appointment, @confirmation]) do |f|
-	- if @confirmation.errors.any?
-		#error_explanation
-			%h2
-				= pluralize(@confirmation.errors.count, "error")
-				prohibited this confirmation from being saved:
-			%ul
-				- @confirmation.errors.full_messages.each do |message|
-					%li= message
-	.form-inputs
-		= f.input :appointment_id, :as => :hidden, :input_html => { :value => @appointment.id }
-		= f.input :confirmation_temp, :label => "Notes to trainer"
-
-	.form-actions
-		%script.stripe-button{ src: "https://checkout.stripe.com/checkout.js", data: {amount: @appointment.price*100, description: @appointment.title, image: "#{asset_path('fitchcircle.png')}", name: "Fitchike", key: Rails.application.secrets.stripe_publishable_key}}
+	.form-style-5
+		%form
+			%fieldset
+				%legend
+					%span.number 1
+					Finalize Appointment
+				=f.input :appointment_id, :as => :hidden, :input_html => { :value => @appointment.id }
+				=f.input :confirmation_temp, :label => "Notes to trainer"
+			%fieldset
+				%legend
+					%span.number 2
+					Submit Request
+			%script.stripe-button{ src: "https://checkout.stripe.com/checkout.js", data: {amount: @appointment.price*100, description: @appointment.title, image: "#{asset_path('fitchcircle.png')}", name: "Fitchike", key: Rails.application.secrets.stripe_publishable_key}}
 
 
