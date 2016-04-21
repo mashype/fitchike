@@ -15,9 +15,10 @@ test:
   password:
 
 production:
-  database: de3ot8ob25b0ds
+  database: <%= ENV["DATABASE_NAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   adapter: postgresql
   host: ec2-54-83-22-48.compute-1.amazonaws.com
-  password: ZLIa36oRGXR9u-3qJSUNtt7Cu1
-
+#  database: de3ot8ob25b0ds
+#  password: ZLIa36oRGXR9u-3qJSUNtt7Cu1
   
