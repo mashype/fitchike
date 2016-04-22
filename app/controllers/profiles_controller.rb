@@ -30,7 +30,8 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        UserMailer.signup_confirmation(@profile).deliver
+        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }      
       else
         format.html { render :new }
       end
