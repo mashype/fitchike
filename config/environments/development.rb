@@ -17,17 +17,7 @@
   config.action_mailer.raise_delivery_errors = true
 
   # Change email delivery to :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: "fitchike.com",
-      authentication: "plain",
-      enable_starttle_auto: true,
-      user_name: "fitchike@gmail.com",
-      password: "fitchpass"
-  }
-
+  config.action_mailer.delivery_method = :letter_opener
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
