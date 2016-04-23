@@ -7,7 +7,6 @@
 	= javascript_include_tag 'application', 'data-turbolinks-track' => true
 	%link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}/
 	= csrf_meta_tags
-
 %body
 	%header
 		.header_inner
@@ -25,15 +24,12 @@
 				- if user_signed_in? && Profile.exists?(user_id: current_user)
 					%li
 						= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
-
 				- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
 					%li					
 						= link_to "Create Your Profile Now", new_profile_path					
-
 				- else
 					%li
 						=link_to "SIGN IN", new_user_session_path		
-	
 
 				- if user_signed_in? && Profile.exists?(user_id: current_user)
 					%li.dropdown	
@@ -48,7 +44,6 @@
 							%li.divider{:role => "separator"}
 							%li
 								= link_to "Change Password", edit_user_registration_path			
-
 
 	%p.notice= notice
 	%p.alert= alert
