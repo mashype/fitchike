@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'welcome/about' => 'welcome#about'
+  get 'welcome/how' => 'welcome#how'
+
   resources :lengths
   resources :location_types
   resources :profile_locations
