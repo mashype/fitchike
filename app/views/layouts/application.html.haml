@@ -12,24 +12,27 @@
 		.header_inner
 			= link_to image_tag('fitchlogo.png'), root_path, id: "logo"
 			%ul.nav.navbar-nav.navbar-right
-				%li.active		
-					=link_to "HOME", root_path	
-					%span.sr-only (current)
-				%li
-					=link_to "ABOUT", welcome_about_path	
-
-				%li
-					=link_to "HOW WE WORK", welcome_how_path	
-				
-				- if user_signed_in? && Profile.exists?(user_id: current_user)
-					%li
-						= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
-				- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
-					%li					
-						= link_to "Create Your Profile Now", new_profile_path					
-				- else
-					%li
-						=link_to "SIGN IN", new_user_session_path		
+				%li.active
+					=link_to "HOME", root_path
+					%span.sr-only (current)	
+				%li.dropdown	
+					%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+						ABOUT
+						%span.caret
+					%ul.dropdown-menu
+						%li
+							=link_to "ABOUT FITCHIKE", welcome_about_path	
+						%li
+							=link_to "FAQ", welcome_faq_path					
+				%li.dropdown	
+					%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+						HOW WE WORK
+						%span.caret
+					%ul.dropdown-menu
+						%li
+							= link_to "WANT TO WORKOUT?", welcome_users_path
+						%li
+							= link_to "WANT TO TRAIN?", welcome_trainers_path
 
 				- if user_signed_in? && Profile.exists?(user_id: current_user)
 					%li.dropdown	
@@ -45,7 +48,39 @@
 							%li
 								= link_to "Change Password", edit_user_registration_path			
 
+				- if user_signed_in? && Profile.exists?(user_id: current_user)
+					%li
+						= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
+				- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
+					%li					
+						= link_to "Create Your Profile Now", new_profile_path					
+				- else
+					%li
+						=link_to "SIGN IN", new_user_session_path		
+
 	%p.notice= notice
 	%p.alert= alert
 
 	= yield
+
+	%nav.navbar.navbar-default
+		.container
+			.navbar-header
+				%button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+					%span.sr-only Toggle navigation
+					%span.icon-bar
+					%span.icon-bar
+					%span.icon-bar
+			#bs-example-navbar-collapse-1.collapse.navbar-collapse
+				%ul.nav.navbar-nav
+					%li
+						= link_to "Twitter", "http://www.twitter.com/fitchike", :target => "_blank" 
+						%span.sr-only (current)
+					%li
+						= link_to "Facebook", "http://www.facebook.com/fitchike", :target => "_blank" 
+					%li
+						= link_to "Instagram", "http://www.instagram.com/fitchike", :target => "_blank" 
+				%p.navbar-text.navbar-right
+					&copy; LeftySeth Designs 2016
+
+

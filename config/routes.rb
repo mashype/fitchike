@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   get 'welcome/about' => 'welcome#about'
-  get 'welcome/how' => 'welcome#how'
+  get 'welcome/faq' => 'welcome#faq'
+  get 'welcome/users' => 'welcome#users'
+  get 'welcome/trainers' => 'welcome#trainers'
+
 
   resources :lengths
   resources :location_types

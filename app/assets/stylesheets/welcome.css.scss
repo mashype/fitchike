@@ -85,6 +85,70 @@
 	}
 }
 
+#users {
+	text-align: center;
+	font-size: 1.5rem;
+	color: $dark_gray;
+	padding: 3.5rem 0;
+	.quote {
+		font-style: italic;
+		margin: 0 0 .5rem 0;
+	}
+}
+
+#trainers {
+	text-align: center;
+	font-size: 1.5rem;
+	color: $dark_gray;
+	padding: 3.5rem 0;
+	.quote {
+		font-style: italic;
+		margin: 0 0 .5rem 0;
+	}
+}
+
+#about {
+	text-align: center;
+	font-size: 1.5rem;
+	padding: 3.5rem 0;
+	.company {
+		text-align: center;
+		padding: 1.5rem 2.5%;
+		float: left;
+		h2 {
+			@include bold_font;
+			color: $red;
+			margin-bottom: 0;
+		}
+		p {
+			color: $dark_gray;
+		}
+	}
+}
+
+#faq {
+	text-align: center;
+	font-size: 1.5rem;
+	padding: 3.5rem 0;
+	.questions {
+		text-align: center;
+		padding: 1.5rem 2.5%;
+		float: left;
+		h2 {
+			@include bold_font;
+			color: $red;
+			margin-bottom: 0;
+		}
+		q {
+			font-size: 1.5rem;
+			color: blue;
+		}
+		a {
+			color: $dark_gray;
+		}
+	}
+}
+
 #bottom_cta {
 	text-align: center;
 	padding: 7.5rem 0;
