@@ -1,11 +1,11 @@
-.wrapper_with_padding
-	%p#notice= notice
-	.panel.panel-default
-		.panel-body
+#profile_show
+	.wrapper_with_padding
+		.container-fluid
 			.row
-				.col-md-4
+				.col-md-6
 					= image_tag @profile.avatar.url(:medium), class: "img-responsive"
-					.table-responsive
+				.col-md-6 
+					#profile_demo
 						%table.table
 							%tbody
 								%tr
@@ -17,135 +17,116 @@
 										%strong Avg Rating:
 									%td{class: "star-rating", dscore: @avg_review}
 										%em= "#{@reviews.length} reviews"
-
-				.col-md-8  
-					#profile_info
-						.table-responsive
-							%table.table
+								%tr
+									%td
+										%strong Gender:
+									%td= @profile.gender.gender 
+								%tr
+									%td
+										%strong DOB:
+									%td= time_ago_in_words(@profile.dob)
+								%tr
+									%td
+										%strong Trainer:
+									%td= @profile.trainer				
+			.row
+				.col-md-12 
+					%br/
+					%h2 PROFILE BIO
+					%p= @profile.bio
+					%br/
+			.row	
+				.col-md-12
+				- if @profile.trainer == true && user_signed_in?
+					/ Nav tabs
+					%ul.nav.nav-tabs{:role => "tablist"}
+						%li.active{:role => "presentation"}
+							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "workouts", "data-toggle" => "tab", :href => "#workouts", :role => "tab"} Workouts
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "certifications", "data-toggle" => "tab", :href => "#certifications", :role => "tab"} Certifications				
+					/ Tab panes
+					.tab-content
+						#appointment.tab-pane.active{:role => "tabpanel"} 
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Title
+										%th Date
+										%th Active
+										%th View
+										%th{:colspan => "4"}
 								%tbody
-									%tr
-										%td
-											%strong Bio:
-										%td= @profile.bio
-									%tr
-										%td
-											%strong Gender:
-										%td= @profile.gender.gender 
-									%tr
-										%td
-											%strong DOB:
-										%td= time_ago_in_words(@profile.dob)
-									%tr
-										%td
-											%strong Trainer:
-										%td= @profile.trainer									
-									%tr
-										%td
-										%td
-											%br/	
-											- if !user_signed_in?
-												=link_to "Sign Up To Book Appointments", new_profile_review_path(@profile), class: "button"
-											
-											- elsif @profile.user_id == current_user.id && @profile.trainer == true
-												= link_to "Edit My Profile", edit_profile_path(@profile), class: "button"
-												= link_to "Create Appointment", new_appointment_path, class: "button"			
+									- @appointments.each do |appointment|
+										%tr
+											%td= appointment.title
+											%td= appointment.end_date
+											%td= appointment.active
+											%td= link_to 'View', appointment_path(appointment)
 
-											- elsif @profile.user_id == current_user.id
-												= link_to "Edit My Record", edit_profile_path(@profile), class: "button"	
-
-											- elsif user_signed_in?
-												=link_to "Review Me", new_profile_review_path(@profile), class: "button"
-	- if @profile.trainer == true && user_signed_in?
-		/ Nav tabs
-		%ul.nav.nav-tabs{:role => "tablist"}
-			%li.active{:role => "presentation"}
-				%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
-			%li{:role => "presentation"}
-				%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews
-			%li{:role => "presentation"}
-				%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
-			%li{:role => "presentation"}
-				%a{"aria-controls" => "workouts", "data-toggle" => "tab", :href => "#workouts", :role => "tab"} Workouts
-			%li{:role => "presentation"}
-				%a{"aria-controls" => "certifications", "data-toggle" => "tab", :href => "#certifications", :role => "tab"} Certifications				
-		/ Tab panes
-		.tab-content
-			#appointment.tab-pane.active{:role => "tabpanel"} 
-				%table.table.table-hover
-					%thead
-						%tr
-							%th Title
-							%th Date
-							%th Active
-							%th View
-							%th{:colspan => "4"}
-					%tbody
-						- @appointments.each do |appointment|
-							%tr
-								%td= appointment.title
-								%td= appointment.end_date
-								%td= appointment.active
-								%td= link_to 'View', appointment_path(appointment)
-
-			#locations.tab-pane{:role => "tabpanel"}
-				%table.table.table-hover
-					%thead
-						%tr
-							%th
-							%th Address 1
-							%th Address 2
-							%th City
-							%th State
-							%th Zip
-							%th Location Type
-							%th{:colspan => "7"}
-					%tbody
-						- @profile.profile_locations.each do |profile_locations|
-							%tr
-								%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{profile_locations.location.latitude}%2C#{profile_locations.location.longitude}"
-								%td= link_to profile_locations.location.address_1, location_path(profile_locations.location)
-								%td= profile_locations.location.address_2								
-								%td= profile_locations.location.city
-								%td= profile_locations.location.state
-								%td= profile_locations.location.zip
-								%td= profile_locations.location_type.type_name				
-			#reviews.tab-pane{:role => "tabpanel"} 
-				%table.table.table-hover
-					%thead
-						%tr
-							%th Rating
-							%th Comment
-							%th{:colspan => "2"}
-					%tbody
-						- @profile.reviews.each do |review|
-							%tr
-								%td{class: "star-rating", dscore: review.rating}
-								%td= review.comment
-			#workouts.tab-pane{:role => "tabpanel"} 	
-				%table.table.table-hover
-					%thead
-						%tr
-							%th Rating
-							%th Workout
-							%th{:colspan => "2"}
-					%tbody
-						- @profile.profile_workouts.each do |profile_workouts|
-							%tr
-								%td= profile_workouts.rating
-								%td= profile_workouts.workout.workout_name
-			#certifications.tab-pane{:role => "tabpanel"} 	
-				%table.table.table-hover
-					%thead
-						%tr
-							%th Cert Year
-							%th Cert Type
-							%th{:colspan => "2"}
-					%tbody
-						- @profile.profile_certifications.each do |profile_certifications|
-							%tr
-								%td= profile_certifications.cert_year
-								%td= profile_certifications.certification.cert_name
-
+						#locations.tab-pane{:role => "tabpanel"}
+							%table.table.table-hover
+								%thead
+									%tr
+										%th
+										%th Address 1
+										%th Address 2
+										%th City
+										%th State
+										%th Zip
+										%th Location Type
+										%th{:colspan => "7"}
+								%tbody
+									- @profile.profile_locations.each do |profile_locations|
+										%tr
+											%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{profile_locations.location.latitude}%2C#{profile_locations.location.longitude}"
+											%td= link_to profile_locations.location.address_1, location_path(profile_locations.location)
+											%td= profile_locations.location.address_2								
+											%td= profile_locations.location.city
+											%td= profile_locations.location.state
+											%td= profile_locations.location.zip
+											%td= profile_locations.location_type.type_name				
+						#reviews.tab-pane{:role => "tabpanel"} 
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Rating
+										%th Comment
+										%th{:colspan => "2"}
+								%tbody
+									- @profile.reviews.each do |review|
+										%tr
+											%td{class: "star-rating", dscore: review.rating}
+											%td= review.comment
+						#workouts.tab-pane{:role => "tabpanel"} 	
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Rating
+										%th Workout
+										%th{:colspan => "2"}
+								%tbody
+									- @profile.profile_workouts.each do |profile_workouts|
+										%tr
+											%td= profile_workouts.rating
+											%td= profile_workouts.workout.workout_name
+						#certifications.tab-pane{:role => "tabpanel"} 	
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Cert Year
+										%th Cert Type
+										%th{:colspan => "2"}
+								%tbody
+									- @profile.profile_certifications.each do |profile_certifications|
+										%tr
+											%td= profile_certifications.cert_year
+											%td= profile_certifications.certification.cert_name
 
 :javascript
 		$('.star-rating').raty({

@@ -1,10 +1,11 @@
-.wrapper_with_padding
-	.table-responsive
-		.row
-			.col-md-4
-				= link_to (image_tag @appointment.profile.avatar.url(:medium)), @appointment.profile
-				.table-responsive
-					%table.table
+#appointment_show
+	.wrapper_with_padding
+		.container-fluid
+			.row
+				.col-md-4 
+					= link_to (image_tag @appointment.profile.avatar.url(:medium)), @appointment.profile
+				.col-md-4 
+					%table.table.table-bordered
 						%tbody
 							%tr		
 								%td
@@ -21,41 +22,43 @@
 							%tr
 								%td
 									%strong OPEN UNTIL:
-								%td= @appointment.end_date
+									%td= @appointment.end_date
 
-			.col-md-8
-				#appointment_show
-					.table-responsive
-						%table.table
-							%tbody
-								%tr	
-									%h1= @appointment.title
-									%p= simple_format(@appointment.comments)
+				.col-md-4 
+					%br/
+					= link_to "View Profile", profile_path(@appointment.profile_id), class: "button"
+					%br/
+					- if @appointment.profile.id == current_user.id
+						%br/
+						= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
+						%br/
+						%br/
+						= link_to "Delete Appointment", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button-danger"
+
+					- else
+						%br/
+						= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
+			.row
+				.col-md-12 
+					%h1= @appointment.title
+					%p= simple_format(@appointment.comments)
+					%br/
+			.row	
+				.col-md-12 
+				%table.table.table-hover
+					%tbody	
+						- unless @confirmations.blank?
+							%thead
 								%tr
-									%td
-										= link_to "View Profile", profile_path(@appointment.profile_id), class: "button"
-										- if @appointment.profile.id == current_user.id
-											= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
-											= link_to "Delete Appointment", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button-danger"
-
-										- else
-											= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
-
-		%table.table
-			%tbody	
-				- unless @confirmations.blank?
-					%thead
-						%tr
-							%th User Email
-							%th Confirmation Number
-							%th Date Booked
-							%th{:colspan => "4"}
-					- @confirmations.each do |confirmation|
-						%tr
-							%td= confirmation.user.email
-							%td= confirmation.confirmation_temp
-							%td= confirmation.created_at
-				- else 
-					%h2 Be the first to book
-					%p No others are booked into this session yet.
-
+									%th User Email
+									%th Confirmation Number
+									%th Date Booked
+									%th{:colspan => "4"}
+							- @confirmations.each do |confirmation|
+								%tr
+									%td= confirmation.user.email
+									%td= confirmation.card_token
+									%td= confirmation.created_at
+						- else 
+							%h2 Be the first to book
+							%p No others are booked into this session yet.

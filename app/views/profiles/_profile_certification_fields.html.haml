@@ -1,15 +1,5 @@
-#certification_update
-	%li.control-group.nested-fields
-		.controls
-			%table
-				%thead
-					%tr
-						%th Certification
-						%th Cert Year
-						%th 
-						%th{:colspan =>3}
-				%tbody
-					%tr
-						%td= f.association :certification, label_method: :cert_name, value_method: :id, label: false, include_blank: false, collection: Certification.order('cert_name')
-						%td= f.input :cert_year, label: false
-						%td= link_to_remove_association "remove", f
+%li.control-group.nested-fields
+	.controls
+		= f.association :certification, label_method: :cert_name, value_method: :id, label: false, include_blank: false, collection: Certification.order('cert_name')
+		= f.input :cert_year, label: false
+		= link_to_remove_association "remove", f

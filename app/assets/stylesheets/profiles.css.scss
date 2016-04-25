@@ -37,7 +37,13 @@ $red: #B11322;
 	}
 }
 
-#profile_info {
+#profile_show {
+	margin: auto;
+	width: 70%;
+	color: $dark_gray;
+}
+
+#profile_demo {
 	background: $dark_gray;
 	color: white;
 	min-height: 300px;
@@ -45,19 +51,8 @@ $red: #B11322;
 	padding: 2em 8%;
 }
 
-#profiles, #appointments {
-	margin-bottom: 50px;
-	ul, ol {
-		padding-left: 18px;
-		li {
-			padding: 1em 0;
-			border-bottom: 1px solid #EAEAEA;
-		}
-	}
-}
-
 #appointment, #reviews, #workouts, #certifications, #locations {
-	background: $light_gray;
+	background: white;
 	min-height: 300px;
 	border-radius: 10px;
 	padding: 2em 8%;
