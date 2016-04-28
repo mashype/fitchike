@@ -53,7 +53,9 @@
 						= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
 				- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
 					%li					
-						= link_to "Create Your Profile Now", new_profile_path					
+						= link_to "Create Your Profile Now", new_profile_path		
+					%li
+						= link_to "SIGN OUT", destroy_user_session_path, method: :delete 			
 				- else
 					%li
 						=link_to "SIGN IN", new_user_session_path		
@@ -80,5 +82,7 @@
 					= link_to "Facebook", "http://www.facebook.com/fitchike", :target => "_blank" 
 				%li
 					= link_to "Instagram", "http://www.instagram.com/fitchike", :target => "_blank" 
+				%li
+					= mail_to "admin@fitchike.com", "Contact", subject: "Fitchike Contact Request"
 			%p.navbar-text.navbar-right
 				&copy; LeftySeth Designs 2016

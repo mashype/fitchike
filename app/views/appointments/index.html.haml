@@ -4,14 +4,13 @@
 
 .wrapper_with_padding
 	%h2 Select an available appointment now to get started	
-	%br/
 	.panel.panel-default
 		.panel-body
 			.row
 				.col-md-9
 					#appointments.transitions-enabled
 						- unless @appointments.blank?
-							- @appointments.each do |appointment|
+							- @appointments.each_with_index do |appointment, i|
 								%a{ href: (url_for [appointment])}
 									.box.panel.panel-default
 										.panel-heading
@@ -19,9 +18,9 @@
 										.panel-body
 											.table-responsive
 												%tr
-												.col-md-4.nopadding
-													= image_tag appointment.profile.avatar.url(:medium)
-												.col-sm-8
+												.col-md-6.nopadding
+													%img.img-rounded.center-block{alt: "Profile Picture", src: appointment.profile.avatar.url(:thumb)}/
+												.col-sm-6
 													.box_text
 														%strong Price:
 														= number_to_currency(appointment.price, unit:"$")		
@@ -29,11 +28,13 @@
 														%strong Length:
 														= appointment.length.appointment_length	
 														%br/
-														%strong Location:
-														= appointment.location.address_1
-														%br/
 														%strong Trainer:
-														= appointment.profile.username													
+														= appointment.profile.username		
+														%br/
+														%br/
+														%strong Avg Rating:
+														%p{class: "star-rating", dscore: @avg_reviews[i]}
+														%em= "#{@reviews.length} reviews"
 
 						- else 
 							%p Sorry, but all our appointments are totally booked up right now.
@@ -64,4 +65,3 @@
 		handler.bounds.extendWith(markers);
 		handler.fitMapToBounds();
 	});
-

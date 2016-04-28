@@ -5,6 +5,17 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = Profile.all.where(trainer: TRUE)
+    
+    @avg_reviews = []
+    for singleprofile in @profiles
+      @reviews = Review.where(profile_id: singleprofile.id)
+
+      if @reviews.blank?
+        @avg_reviews << 0
+      else
+        @avg_reviews << @reviews.average(:rating).round(2)
+      end
+    end
   end
 
   def show

@@ -7,11 +7,9 @@
 		%br/
 		%br/
 		%br/
-		= link_to "Get Started Now", new_user_registration_path, class: "button"
-		%br/
-		%br/
-		%a=link_to "already a member?", new_user_session_path
-		%br/
+		.col-md-4.col-md-offset-4
+			= link_to "Get Started Now", new_user_registration_path, class: "button"
+
 
 #testimonial
 	.wrapper
@@ -41,5 +39,6 @@
 		%p Just take a look and we bet that you'll find what you're looking for.  
 		%p Check out trainers that are availble in your area now.
 		%br/
-		= link_to "View Our Trainers", profiles_path, class: "button"
+		.col-md-4.col-md-offset-4
+			= link_to "View Our Trainers", profiles_path, class: "button"
 

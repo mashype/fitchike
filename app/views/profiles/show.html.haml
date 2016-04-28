@@ -2,11 +2,20 @@
 	.wrapper_with_padding
 		.container-fluid
 			.row
-				.col-md-6
-					= image_tag @profile.avatar.url(:medium), class: "img-responsive"
-				.col-md-6 
+				.col-md-5
+					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @profile.avatar.url(:medium)}/
+				.col-md-7
 					#profile_demo
 						%table.table
+							- if @profile.id == current_user.profile.id
+								%tr
+									= link_to "Edit Profile", edit_profile_path(@profile), class: "button"	
+							- else user_signed_in?
+								%tr
+									= link_to "Review Me", new_profile_review_path(@profile), class: "button"	
+
+
+
 							%tbody
 								%tr
 									%td
@@ -28,7 +37,7 @@
 								%tr
 									%td
 										%strong Trainer:
-									%td= @profile.trainer				
+									%td= @profile.trainer		
 			.row
 				.col-md-12 
 					%br/

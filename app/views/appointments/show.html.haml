@@ -1,15 +1,18 @@
 #appointment_show
 	.wrapper_with_padding
 		.container-fluid
+			%h2= @appointment.title
 			.row
-				.col-md-4 
-					= link_to (image_tag @appointment.profile.avatar.url(:medium)), @appointment.profile
-				.col-md-4 
-					%table.table.table-bordered
+				.col-md-2 
+					%img.img-circle.center-block{alt: "Profile Picture", src: @appointment.profile.avatar.url(:thumb)}/
+				.col-md-6 
+					= simple_format(@appointment.comments)
+				.col-md-4	 
+					%table.table
 						%tbody
 							%tr		
 								%td
-									%strong USERNAME:
+									%strong TRAINER:
 								%td= @appointment.profile.username 	
 							%tr
 								%td
@@ -24,27 +27,19 @@
 									%strong OPEN UNTIL:
 									%td= @appointment.end_date
 
-				.col-md-4 
-					%br/
-					= link_to "View Profile", profile_path(@appointment.profile_id), class: "button"
-					%br/
 					- if @appointment.profile.id == current_user.id
-						%br/
-						= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
-						%br/
-						%br/
-						= link_to "Delete Appointment", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button-danger"
-
+						.row
+							= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"
+							= link_to "Delete Appointment", appointment_path(@appointment), method: :delete, data: { confirm: "are you sure" }, class: "button"
 					- else
-						%br/
-						= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
-			.row
-				.col-md-12 
-					%h1= @appointment.title
-					%p= simple_format(@appointment.comments)
-					%br/
+						.row
+							= link_to "Book Appointment", new_appointment_confirmation_path(@appointment), class: "button"
+							= link_to "View Profile", profile_path(@appointment.profile_id), class: "button"
+
 			.row	
 				.col-md-12 
+				%br/
+				%br/
 				%table.table.table-hover
 					%tbody	
 						- unless @confirmations.blank?
@@ -62,3 +57,6 @@
 						- else 
 							%h2 Be the first to book
 							%p No others are booked into this session yet.
+
+
+

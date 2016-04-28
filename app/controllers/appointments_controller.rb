@@ -15,6 +15,16 @@ class AppointmentsController < ApplicationController
       marker.lat appointment.location.latitude
       marker.lng appointment.location.longitude
     end
+
+   	@avg_reviews = []
+	  for singleappointment in @appointments
+      @reviews = Review.where(profile_id: singleappointment.profile.id)
+      if @reviews.blank?
+        @avg_reviews << 0
+      else
+        @avg_reviews << @reviews.average(:rating).round(2)
+      end
+		end
   end
 
 

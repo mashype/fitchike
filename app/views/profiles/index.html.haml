@@ -10,7 +10,7 @@
 				.col-md-8	
 					#profiles.transitions-enabled
 						- unless @profiles.blank?
-							- @profiles.each do |profile|
+							- @profiles.each_with_index do |profile, i|
 								%a{ href: (url_for [profile])}
 									.box.panel.panel-default
 										.panel-body
@@ -22,13 +22,15 @@
 												.col-sm-6
 													%strong Username:
 													%p= profile.username		
-													%br/
 													%strong Gender:
 													%p= profile.gender.gender		
-													%br/
 													%strong Birthday:
 													%p= profile.dob		
-													%br/
+													%strong Avg Rating:
+													%p= @avg_reviews[i]
+													.p{class: "star-rating", dscore: @avg_reviews[i] }
+
+
 
 						- else 
 							%p Sorry, but all our appointments are totally booked up right now.
@@ -45,6 +47,7 @@
 		handler.fitMapToBounds();
 	});
 
+
 :javascript
 		$('.star-rating').raty({
 				path: '/assets/',
@@ -53,3 +56,4 @@
 						return $(this).attr('dscore');
 				}
 		}); 
+

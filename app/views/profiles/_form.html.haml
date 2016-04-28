@@ -1,4 +1,3 @@
-
 = simple_form_for @profile, html: { multipart: true } do |f|
 	- if @profile.errors.any?
 		#errors
@@ -26,6 +25,8 @@
 					Add Profile Pic
 				= image_tag @profile.avatar.url(:medium)
 				= f.input :avatar, input_html: { class: 'form-control'}
+
+		- if @profile.trainer == true
 
 			%fieldset#profile-locations
 				%ol
@@ -56,5 +57,5 @@
 
 
 
-			%input{:type => "submit", :value => "Complete Profile"}/
+		%input{:type => "submit", :value => "Complete Profile"}/
 
