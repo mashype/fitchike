@@ -16,7 +16,7 @@
 					User Info
 				= f.input :username, input_html: { class: 'form-control'}
 				= f.input :bio, input_html: { class: 'form-control'}
-				= f.input :end_date, as: :string, input_html: {type: :date} :label => "Birthday"
+				= f.input :dob, as: :string, input_html: {type: :date}, label: "Birthday"
 				= f.association :gender, label_method: :gender, label: false, value_method: :id, include_blank: false
 				= f.input :trainer, hint: 'Are you available to train others?'
 			%fieldset
@@ -52,8 +52,6 @@
 					= f.simple_fields_for :profile_certifications do |profilecertification|
 						= render 'profile_certification_fields', f: profilecertification
 				= link_to_add_association 'Add Additional Certifications', f, :profile_certifications, class: "btn btn-default add-button", 'data-association-insertion-node' => "#profile-certifications ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|profile_certification| profile_certification.build_certification; profile_certification }
-
-
 
 		%input{:type => "submit", :value => "Complete Profile"}/
 
