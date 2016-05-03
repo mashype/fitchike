@@ -35,12 +35,14 @@
 						%li
 							=link_to "ABOUT FITCHIKE", welcome_about_path	
 						%li
-							=link_to "FAQ", welcome_faq_path					
+							=link_to "FAQ", welcome_faq_path	
+						%li
+							=link_to "TERMS OF USE", welcome_terms_path												
 						%li.divider{:role => "separator"}
 						%li
-							= link_to "WANT TO WORKOUT?", welcome_users_path
+							= link_to "FOR CLIENTS", welcome_users_path
 						%li
-							= link_to "WANT TO TRAIN?", welcome_trainers_path
+							= link_to "FOR TRAINERS", welcome_trainers_path
 
 				- if user_signed_in? && Profile.exists?(user_id: current_user)
 					%li.dropdown	
