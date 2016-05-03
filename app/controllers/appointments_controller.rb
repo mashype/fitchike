@@ -40,6 +40,7 @@ class AppointmentsController < ApplicationController
 		@appointment = current_user.appointments.build(appointment_params)
 
 		if @appointment.save
+			UserMailer.appointment_confirmation(@appointment.profile).deliver
 			redirect_to @appointment
 		else
 			render 'new'      
