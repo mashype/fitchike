@@ -16,7 +16,7 @@ $red: #B11322;
 }
 
 body {
-	padding-top: 2.0rem;
+	padding-top: 0.4rem;
     padding-bottom: 60px;
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -109,7 +109,7 @@ header {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	padding: 1.75rem 0;
+	padding: 1.0rem 0 0 0;
 	border-bottom: 6px solid $blue;
 	z-index: 999;
 	.header_inner {

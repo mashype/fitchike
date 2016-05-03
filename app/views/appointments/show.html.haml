@@ -4,7 +4,7 @@
 			%h2= @appointment.title
 			.row
 				.col-md-2 
-					%img.img-circle.center-block{alt: "Profile Picture", src: @appointment.profile.avatar.url(:thumb)}/
+					%img.img-rounded.center-block{alt: "Profile Picture", src: @appointment.profile.avatar.url(:thumb)}/
 				.col-md-6 
 					= simple_format(@appointment.comments)
 				.col-md-4	 

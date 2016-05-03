@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'welcome/faq' => 'welcome#faq'
   get 'welcome/users' => 'welcome#users'
   get 'welcome/trainers' => 'welcome#trainers'
+  get 'welcome/terms' => 'welcome#terms'  
 
 
   resources :lengths

@@ -24,11 +24,7 @@
 							=link_to "ABOUT FITCHIKE", welcome_about_path	
 						%li
 							=link_to "FAQ", welcome_faq_path					
-				%li.dropdown	
-					%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-						HOW WE WORK
-						%span.caret
-					%ul.dropdown-menu
+						%li.divider{:role => "separator"}
 						%li
 							= link_to "WANT TO WORKOUT?", welcome_users_path
 						%li
@@ -36,21 +32,19 @@
 
 				- if user_signed_in? && Profile.exists?(user_id: current_user)
 					%li.dropdown	
-						%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-							PROFILE MENU	
+						%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+							ACCOUNT	
 							%span.caret
 						%ul.dropdown-menu
 							%li
-								= link_to "View My Profile", profile_path(current_user.profile.id)
-							%li
-								%a{:href => "#"} Create Appointment
+								= link_to "Create Appointment", new_appointment_path
 							%li.divider{:role => "separator"}
 							%li
+								= link_to "View My Profile", profile_path(current_user.profile.id)
+							%li
 								= link_to "Change Password", edit_user_registration_path			
-
-				- if user_signed_in? && Profile.exists?(user_id: current_user)
-					%li
-						= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
+							%li
+								= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
 				- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
 					%li					
 						= link_to "Create Your Profile Now", new_profile_path		
@@ -64,6 +58,9 @@
 %p.alert= alert
 
 = yield
+
+
+
 
 %nav.navbar.navbar-default.navbar-fixed-bottom
 	.container

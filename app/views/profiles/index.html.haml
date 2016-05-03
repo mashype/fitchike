@@ -1,52 +1,24 @@
-%script{:src => "//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="}
-%script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"}
-%script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js", :type => "text"}
-
 .wrapper_with_padding
 	%h2 Take a look at trainers in your area now	
-	.panel.panel-default
-		.panel-body
-			.row
-				.col-md-8	
-					#profiles.transitions-enabled
-						- unless @profiles.blank?
-							- @profiles.each_with_index do |profile, i|
-								%a{ href: (url_for [profile])}
-									.box.panel.panel-default
-										.panel-body
-											.table-responsive
-												%tr
-												.col-sm-6
-													.img
-														= image_tag profile.avatar.url(:medium)
-												.col-sm-6
-													%strong Username:
-													%p= profile.username		
-													%strong Gender:
-													%p= profile.gender.gender		
-													%strong Birthday:
-													%p= profile.dob		
-													%strong Avg Rating:
-													%p= @avg_reviews[i]
-													.p{class: "star-rating", dscore: @avg_reviews[i] }
-
-
-
-						- else 
-							%p Sorry, but all our appointments are totally booked up right now.
-
-				.col-md-4
-					#appointments.map
-					= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=14&markers=#{session[:latitude]}%2C#{session[:longitude]}"
-
-:javascript
-	handler = Gmaps.build('Google');
-	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-		markers = handler.addMarkers(#{raw @hash.to_json});
-		handler.bounds.extendWith(markers);
-		handler.fitMapToBounds();
-	});
-
+	%table.table.table-responsive.table-hover
+		%thead
+			%tr
+				%th 
+				%th Username
+				%th Gender
+				%th DOB
+				%th View
+				%th Average Rating
+				%th{:colspan => "5"}
+		%tbody
+			- @profiles.each_with_index do |profile, i|
+				%tr
+					%td= image_tag profile.avatar.url(:thumb)
+					%td= profile.username		
+					%td= profile.gender.gender		
+					%td= profile.dob		
+					%td= link_to 'View', profile_path(profile.id)
+					%td{class: "star-rating", dscore: @avg_reviews[i] }
 
 :javascript
 		$('.star-rating').raty({

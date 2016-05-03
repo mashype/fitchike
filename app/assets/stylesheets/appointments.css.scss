@@ -35,7 +35,7 @@ button, .button {
 h2 {
 	@include bold_font;
 	font-size: 22px;
-	text-decoration: underline;
+	text-decoration: none;
 	margin: 0;
   text-align: center;
 	padding: 0em 5px 1em 5px;
@@ -54,18 +54,19 @@ h2 {
 	  border-radius: 7px;
 	  text-align: center;
 	  .panel-body {
-	 	  background: $light_blue;
+	 	  background: $blue;
 	 	  padding: 5px; 
 	 	  text-align: left;
 	  }
 	  .panel-heading {
-	 	  background: $blue;
+	 	  background: $dark_gray;
 	 	  padding: 5px; 
 	 	  text-align: left;
 	  }
 	  img {
 	 	  padding-left: 0px; 
 	 		padding-right: 0px;
+	 		width: 100%;
 	  	height: auto;
 	  }
 	  h2 {
@@ -90,6 +91,12 @@ h2 {
 	  	border-radius: 25px;
 			padding: 1px;
 			margin: 06
+	  }
+
+	  .stars {
+	  	img {
+				width: 15px;
+	  	}
 	  }
 	}
 }
