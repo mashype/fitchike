@@ -3,9 +3,9 @@
 		.container-fluid
 			%h2= @appointment.title
 			.row
-				.col-md-2 
-					%img.img-rounded.center-block{alt: "Profile Picture", src: @appointment.profile.avatar.url(:thumb)}/
-				.col-md-6 
+				.col-md-4 
+					%img.img-rounded.center-block{alt: "Profile Picture", src: @appointment.profile.avatar.url(:medium)}/
+				.col-md-4 
 					= simple_format(@appointment.comments)
 				.col-md-4	 
 					%table.table

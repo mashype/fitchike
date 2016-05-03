@@ -15,7 +15,7 @@
 				%legend
 					%span.number
 					Available Until
-				= f.input :end_date, as: :date, label: false
+				= f.input :end_date, as: :string, input_html: {type: :date}
 				= f.input :active
 			%input{:type => "submit", :value => "Finalize Appointment"}/
 
