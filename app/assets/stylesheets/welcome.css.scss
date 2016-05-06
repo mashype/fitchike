@@ -79,28 +79,20 @@
 	background-position: top center;
 	width: 100%;
 	min-height: 400px;
-	display: table;
-	.callout_inner {
-		display: table-cell;
-		vertical-align: middle;
+	text-align: center;
+	vertical-align: middle;
+	h2 {
+		@include bold_font;
+		color: $blue;
+		margin-bottom: 0;
 	}
-	.callout {
-		text-align: center;
-		width: 33.3333%;
-		padding: 1.5rem 2.5%;
-		float: left;
-		h2 {
-			@include bold_font;
-			color: $blue;
-			margin-bottom: 0;
-		}
-		i {
-			font-size: 4.5rem;
-			color: white;
-		}
-		p {
-			color: white;
-		}
+	i {
+		font-size: 4.5rem;
+		color: white;
+		padding: 3.0rem 2.5%;
+	}
+	p {
+		color: white;
 	}
 }
 
