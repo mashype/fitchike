@@ -28,71 +28,66 @@
 		ga('create', 'UA-77303912-1', 'auto');
 		ga('send', 'pageview');
 
-
+		
 
 %body
-	%nav.navbar.navbar-inverse.navbar-fixed-top
-		.container-fluid
-			.navbar-header
-				%button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-					%span.sr-only Toggle navigation
-					%span.icon-bar
-					%span.icon-bar
-					%span.icon-bar
-				%a.navbar-brand
-				= link_to image_tag('fitchlogo.png'), root_path
-			#navbar.navbar-collapse.collapse
-				%ul.nav.navbar-nav.navbar-right
-					%li.active
-						=link_to "HOME", root_path
-						%span.sr-only (current)	
+	%header
+		.header_inner
+			= link_to image_tag('fitchlogo.png'), root_path, id: "logo"
+			%ul.nav.navbar-nav.navbar-right
+				%li.active
+					=link_to "HOME", root_path
+					%span.sr-only (current)	
+				%li.dropdown	
+					%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+						ABOUT
+						%span.caret
+					%ul.dropdown-menu
+						%li
+							=link_to "VIEW TRAINERS", profiles_path	
+						%li
+							=link_to "ABOUT FITCHIKE", welcome_about_path	
+						%li
+							=link_to "FAQ", welcome_faq_path	
+						%li
+							=link_to "TERMS OF USE", welcome_terms_path												
+						%li.divider{:role => "separator"}
+						%li
+							= link_to "FOR CLIENTS", welcome_users_path
+						%li
+							= link_to "FOR TRAINERS", welcome_trainers_path
+
+				- if user_signed_in? && Profile.exists?(user_id: current_user)
 					%li.dropdown	
-						%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-							ABOUT
+						%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+							ACCOUNT	
 							%span.caret
 						%ul.dropdown-menu
 							%li
-								=link_to "VIEW TRAINERS", profiles_path	
-							%li
-								=link_to "ABOUT FITCHIKE", welcome_about_path	
-							%li
-								=link_to "FAQ", welcome_faq_path	
-							%li
-								=link_to "TERMS OF USE", welcome_terms_path												
+								= link_to "Create Appointment", new_appointment_path
 							%li.divider{:role => "separator"}
 							%li
-								= link_to "FOR CLIENTS", welcome_users_path
+								= link_to "View My Profile", profile_path(current_user.profile.id)
 							%li
-								= link_to "FOR TRAINERS", welcome_trainers_path
+								= link_to "Change Password", edit_user_registration_path			
+							%li
+								= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
+				- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
+					%li					
+						= link_to "Create Your Profile Now", new_profile_path		
+					%li
+						= link_to "SIGN OUT", destroy_user_session_path, method: :delete 			
+				- else
+					%li
+						=link_to "SIGN IN", new_user_session_path		
 
-					- if user_signed_in? && Profile.exists?(user_id: current_user)
-						%li.dropdown	
-							%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-								ACCOUNT	
-								%span.caret
-							%ul.dropdown-menu
-								%li
-									= link_to "Create Appointment", new_appointment_path
-								%li.divider{:role => "separator"}
-								%li
-									= link_to "View My Profile", profile_path(current_user.profile.id)
-								%li
-									= link_to "Change Password", edit_user_registration_path			
-								%li
-									= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
-					- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
-						%li					
-							= link_to "Create Your Profile Now", new_profile_path		
-						%li
-							= link_to "SIGN OUT", destroy_user_session_path, method: :delete 			
-					- else
-						%li
-							=link_to "SIGN IN", new_user_session_path		
-						
 %p.notice= notice
 %p.alert= alert
 
 = yield
+
+
+
 
 %nav.navbar.navbar-default.navbar-fixed-bottom
 	.container
@@ -114,4 +109,4 @@
 				%li
 					= mail_to "admin@fitchike.com", "Contact", subject: "Fitchike Contact Request"
 			%p.navbar-text.navbar-right
-				&copy; LeftySeth Designs 2016                    
+				&copy; LeftySeth Designs 2016

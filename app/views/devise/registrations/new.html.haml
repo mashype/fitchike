@@ -1,21 +1,23 @@
-.wrapper_with_padding
-	.col-md-6.col-md-offset-3
-		%h2 Sign up now to get access to all the resources available or trainers and clients.
+.wrapper
+	.row
+		.containter
+			.col-md-6.col-md-offset-3
+				%h2 Sign up now to get access to all the resources available or trainers and clients.
 
-		= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-			= f.error_notification
-			.form-style-5
-				%form
-					%fieldset
-						%legend
-							%span.number 
-							Join Fitchike
-						= f.input :email, required: true, autofocus: true, :placeholder => "Email Address", label: false, type: "email"
-						= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), :placeholder => "Password", label: false, type: "text"
-						= f.input :password_confirmation, required: true, :placeholder => "Confirm Password", label: false
-				%input{:type => "submit", :value => "Create Account"}/
-				%p By signing up with Fitchike you agree to our 
-				%p=link_to "Terms of Use", welcome_terms_path
+				= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+					= f.error_notification
+					.form-style-5
+						%form
+							%fieldset
+								%legend
+									%span.number 
+									Join Fitchike
+								= f.input :email, required: true, autofocus: true, :placeholder => "Email Address", label: false, type: "email"
+								= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), :placeholder => "Password", label: false, type: "text"
+								= f.input :password_confirmation, required: true, :placeholder => "Confirm Password", label: false
+						%input{:type => "submit", :value => "Create Account"}/
+						%p By signing up with Fitchike you agree to our 
+						%p=link_to "Terms of Use", welcome_terms_path
 
 
 	:javascript
