@@ -47,7 +47,11 @@
 					= form_tag appointments_path, :method => :get do
 						%p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
 						%p= submit_tag "Refresh Search", :search => nil
-
+			.row
+				.col-md-6
+					= link_to "Create New Appointment", new_appointment_path, class: "button"
+				.col-md-6
+					= link_to "View More Profiles", profiles_path, class: "button"
 
 
 :javascript
