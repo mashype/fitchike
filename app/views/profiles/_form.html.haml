@@ -15,16 +15,17 @@
 					%span.number 1
 					User Info
 				= f.input :username, input_html: { class: 'form-control'}
-				= f.input :bio, input_html: { class: 'form-control'}
-				= f.input :dob, as: :string, input_html: {type: :date}, label: "Birthday"
 				= f.association :gender, label_method: :gender, label: false, value_method: :id, include_blank: false
-				= f.input :trainer, hint: 'Are you available to train others?'
+				= f.input :trainer, label: "Public", hint: 'Do you want to make your profile public?'
+				%br/
 			%fieldset
 				%legend
 					%span.number 2
 					Add Profile Pic
 				= image_tag @profile.avatar.url(:medium)
 				= f.input :avatar, input_html: { class: 'form-control'}
+			%br/
+			%h2 COMPLETE YOUR PROFILE 
 
 			%fieldset#profile-locations
 				%ol
