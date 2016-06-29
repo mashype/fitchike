@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
  
   authenticated :user do
-  	root 'appointments#index', as: "authenticated_root"
+  	root 'profiles#index', as: "authenticated_root"
   end
 
   root  'welcome#index'
