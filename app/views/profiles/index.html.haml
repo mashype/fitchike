@@ -29,9 +29,8 @@
 													%br/
 													%strong Avg Rating:
 													.stars
-														%p{class: "star-rating", dscore: @avg_reviews}
+														%p{class: "star-rating", dscore: @avg_reviews[i]}
 														%em= "#{@reviews.length} reviews"
-
 
 				.col-md-3
 					%img{:style => "width: 100%;"}
