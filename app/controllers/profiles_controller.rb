@@ -1,14 +1,14 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  
+
 
   def index
     @profiles = Profile.all.where(trainer: TRUE)
     
     @avg_reviews = []
     for singleprofile in @profiles
-      @reviews = Review.where(profile_id: singleprofile.id)
+      @reviews = Review.where(profile_id: @profile.id)
 
       if @reviews.blank?
         @avg_reviews << 0
