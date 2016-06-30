@@ -49,7 +49,6 @@
 				- if @profile.trainer == true && user_signed_in?
 					/ Nav tabs
 					%ul.nav.nav-tabs{:role => "tablist"}
-
 						%li.active{:role => "presentation"}
 							%a{"aria-controls" => "workouts", "data-toggle" => "tab", :href => "#workouts", :role => "tab"} Workouts
 						%li{:role => "presentation"}
@@ -58,12 +57,10 @@
 							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
 						%li{:role => "presentation"}
 							%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews
-
 						%li{:role => "presentation"}
 							%a{"aria-controls" => "certifications", "data-toggle" => "tab", :href => "#certifications", :role => "tab"} Certifications				
 					/ Tab panes
 					.tab-content
-
 						#workouts.tab-pane{:role => "tabpanel"} 	
 							%table.table.table-hover
 								%thead
