@@ -248,17 +248,17 @@ button, .button:hover {
 	vertical-align: middle;
 	h2 {
 		@include bold_font;
-		font-size: 3.0rem;
+		font-size: 3.75rem;
 		color: $red;
 		margin-bottom: 0;
 	}
 	i {
-		font-size: 4.5rem;
+		font-size: 4.8rem;
 		color: $blue;
 		padding: 3.0rem 2.5%;
 	}
 	p {
-		font-size: 2.0rem;
+		font-size: 3.0rem;
 		color: $blue;
 	}
 
@@ -269,7 +269,7 @@ button, .button:hover {
 		padding: 1rem 3.5rem;
 		min-width: 100px;
 		border-radius: 0.50rem;
-		font-size: 20px;
+		font-size: 3.5rem;
 	}
 
 	button, .button:hover {
