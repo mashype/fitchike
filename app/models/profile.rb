@@ -6,6 +6,7 @@ class Profile < ActiveRecord::Base
 	belongs_to :gender
 	belongs_to :user
 
+	has_many :messages
 	has_many :reviews
 	has_many :appointments
 	

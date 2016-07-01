@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :messages
   get 'welcome/about' => 'welcome#about'
   get 'welcome/faq' => 'welcome#faq'
   get 'welcome/users' => 'welcome#users'
@@ -18,18 +19,19 @@ Rails.application.routes.draw do
   resources :certifications
   resources :profile_workout_types
   resources :workouttypes
+  resources :charges
+  resources :genders
+
   resources :profiles do 
     resources :reviews, except: [:show, :index]
+    resources :messages, except: [:show, :index]
   end
-
-  
   
   resources :appointments do
     resources :confirmations
   end
 
-  resources :charges
-  resources :genders
+
   
   devise_for :users, controllers: { registrations: "registrations" }
 

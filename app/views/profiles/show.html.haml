@@ -12,9 +12,10 @@
 									= link_to "Edit Profile", edit_profile_path(@profile), class: "button"	
 							- else user_signed_in?
 								%tr
-									= link_to "Review Me", new_profile_review_path(@profile), class: "button"	
-
-
+									%td
+										= link_to "Review Me", new_profile_review_path(@profile), class: "button"	
+									%td
+										= link_to "Message", new_profile_message_path(@profile), class: "button"	
 
 							%tbody
 								%tr
@@ -58,7 +59,9 @@
 						%li{:role => "presentation"}
 							%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#reviews", :role => "tab"} Reviews
 						%li{:role => "presentation"}
-							%a{"aria-controls" => "certifications", "data-toggle" => "tab", :href => "#certifications", :role => "tab"} Certifications				
+							%a{"aria-controls" => "certifications", "data-toggle" => "tab", :href => "#certifications", :role => "tab"} Certifications			
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#messages", :role => "tab"} Messages											
 					/ Tab panes
 					.tab-content
 						#workouts.tab-pane{:role => "tabpanel"} 	
@@ -140,6 +143,19 @@
 											%td= profile_certifications.cert_year
 											%td= profile_certifications.certification.cert_name
 
+						#messages.tab-pane{:role => "tabpanel"} 
+							%table.table.table-hover
+								%thead
+									%tr
+										%th User
+										%th Comment
+										%th{:colspan => "2"}
+								%tbody
+									- @profile.messages.each do |message|
+										%tr
+											%td= message.user.email
+											%td= message.body
+											%td= link_to 'View User', profile_path(message.user.profile.id)
 
 
 :javascript
