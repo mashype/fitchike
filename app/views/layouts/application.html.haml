@@ -29,18 +29,18 @@
 		ga('create', 'UA-77303912-1', 'auto');
 		ga('send', 'pageview');
 
+
 %body
-	%nav.navbar.navbar-inverse.navbar-fixed-top
+	%nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
 		.container-fluid
 			.navbar-header
-				%a.navbar-brand
-					= link_to image_tag('fitchlogo.png'), root_path
 				%button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
 					%span.sr-only Toggle navigation
 					%span.icon-bar
 					%span.icon-bar
 					%span.icon-bar
-
+				%a.navbar-brand
+					= link_to image_tag('fitchlogo.png'), root_path
 			#navbar.navbar-collapse.collapse
 				%ul.nav.navbar-nav.navbar-right
 					%li.active
@@ -115,3 +115,8 @@
 					= mail_to "admin@fitchike.com", "Contact", subject: "Fitchike Contact Request"
 			%p.navbar-text.navbar-right
 				&copy; LeftySeth Designs 2016                    
+
+
+
+
+
