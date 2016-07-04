@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   
 
   def index
-    @profiles = Profile.all
+    @profiles = Profile.where(trainer: true)
 
     @avg_reviews = []
     for singleprofile in @profiles
