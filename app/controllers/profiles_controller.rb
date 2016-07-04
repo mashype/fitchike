@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = Profile.all
-    
+
     @avg_reviews = []
     for singleprofile in @profiles
       @reviews = Review.where(profile_id: singleprofile.id)
@@ -16,6 +16,20 @@ class ProfilesController < ApplicationController
         @avg_reviews << @reviews.average(:rating).round(2)
       end
     end
+
+    if params[:search].present?
+      location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
+      @profile_locations = ProfileLocation.includes(:location).where(location_id: location_ids)
+    else
+      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
+      @profile_locations = ProfileLocation.includes(:location).where(location_id: location_ids)
+    end
+
+    @hash = Gmaps4rails.build_markers(@profile_locations) do |profile_location, marker|
+      marker.lat profile_location.location.latitude
+      marker.lng profile_location.location.longitude
+    end
+
   end
 
   def show
