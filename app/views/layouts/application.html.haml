@@ -77,6 +77,8 @@
 								%li
 									= link_to "View My Profile", profile_path(current_user.profile.id)
 								%li
+									= link_to "My Conversations", conversations_path
+								%li
 									= link_to "Change Password", edit_user_registration_path			
 								%li
 									= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
@@ -88,11 +90,13 @@
 					- else
 						%li
 							=link_to "SIGN IN", new_user_session_path		
-						
-%p.notice= notice
-%p.alert= alert
 
-= yield
+	- flash.each do |key, value|
+		%div{:class => "alert alert-#{key}"}
+			= value
+	.page-header
+		%h1= yield :page_header
+	= yield
 
 %nav.navbar.navbar-default.navbar-fixed-bottom
 	.container
@@ -115,6 +119,7 @@
 					= mail_to "admin@fitchike.com", "Contact", subject: "Fitchike Contact Request"
 			%p.navbar-text.navbar-right
 				&copy; LeftySeth Designs 2016                    
+
 
 
 

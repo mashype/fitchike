@@ -11,7 +11,8 @@
 								%legend
 									%span.number 
 									Create Your Account
-								= f.input :email, required: true, autofocus: true, :placeholder => "Email Address", label: false, type: "email"
+								= f.input :username, required: true, autofocus: true, :placeholder => "Create Username", label: false
+								= f.input :email, required: true, :placeholder => "Email Address", label: false, type: "email"
 								= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), :placeholder => "Password", label: false, type: "text"
 								= f.input :password_confirmation, required: true, :placeholder => "Confirm Password", label: false
 						%input{:type => "submit", :value => "Create Account"}/
