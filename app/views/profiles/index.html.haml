@@ -4,49 +4,52 @@
 / only if you need custom infoboxes
 
 .wrapper_with_padding
-	%h2 Check out users in your areas looking to partner up	
-	.panel.panel-default
-		.panel-body
-			.row
-				.col-md-8
-					#appointments.transitions-enabled
-						- @profiles.each_with_index do |profile, i|
-							%a{ href: (url_for [profile])}
-								.box.panel.panel-default
-									.panel-heading
-										%h2= profile.username
-									.panel-body
-										.table-responsive
-											%tr
-											.col-md-6.nopadding
-												%img.img-rounded.center-block{alt: "Profile Picture", src: profile.avatar.url(:thumb)}/
-											.col-md-6
-												.box_text
-													%strong Gender:
-													= profile.gender.gender
-													%br
-													%strong DOB:
-													= profile.dob	
-													%br/
-													%strong Avg Rating:
-													.stars
-														%p{class: "star-rating", dscore: @avg_reviews[i]}
-														%em= "#{@reviews.length} reviews"
+	.row
+		.containter
+			- page_header "Check Out Users In Your Area"
 
-				.col-md-4
-					%img{:style => "width: 100%;"}
-						#map{:style => "width: 100%; height: 400px;"}	
-					%p 
-					= form_tag profiles_path, :method => :get do
-						%p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
-						%p= submit_tag "Refresh Search", :search => nil
-					%br/
-			.row
-				%br/
-				.col-md-6
-					= link_to "Create New Appointment", new_appointment_path, class: "button"
-				.col-md-6
-					= link_to "Check Out Pro Appointments", appointments_path, class: "button"
+			.panel.panel-default
+				.panel-body
+					.row
+						.col-md-8
+							#appointments.transitions-enabled
+								- @profiles.each_with_index do |profile, i|
+									%a{ href: (url_for [profile])}
+										.box.panel.panel-default
+											.panel-heading
+												%h2= profile.username
+											.panel-body
+												.table-responsive
+													%tr
+													.col-md-6.nopadding
+														%img.img-rounded.center-block{alt: "Profile Picture", src: profile.avatar.url(:thumb)}/
+													.col-md-6
+														.box_text
+															%strong Gender:
+															= profile.gender.gender
+															%br
+															%strong DOB:
+															= profile.dob	
+															%br/
+															%strong Avg Rating:
+															.stars
+																%p{class: "star-rating", dscore: @avg_reviews[i]}
+																%em= "#{@reviews.length} reviews"
+
+						.col-md-4
+							%img{:style => "width: 100%;"}
+								#map{:style => "width: 100%; height: 400px;"}	
+							%p 
+							= form_tag profiles_path, :method => :get do
+								%p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
+								%p= submit_tag "Refresh Search", :search => nil
+							%br/
+					.row
+						%br/
+						.col-md-6
+							= link_to "Create New Appointment", new_appointment_path, class: "button"
+						.col-md-6
+							= link_to "Check Out Pro Appointments", appointments_path, class: "button"
 
 
 :javascript
