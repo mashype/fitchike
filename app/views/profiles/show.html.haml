@@ -15,7 +15,7 @@
 									%td
 										= link_to "Review Me", new_profile_review_path(@profile), class: "button"	
 									%td
-										= link_to "Message Me", new_message_path, class: "button"												
+										= link_to "Message Me", new_message_path(to: @profile.user.id), class: "button"		
 
 							%tbody
 								%tr
