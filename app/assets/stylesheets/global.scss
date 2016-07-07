@@ -16,10 +16,15 @@ $red: #B11322;
 }
 
 body {
-	padding-top: 0.4rem;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+    padding-top: 60px;
     padding-bottom: 60px;
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
-}
+  }
+  @media (max-width: 980px) {
+    body {
+      padding-top: 0;
+    }
+  }
 
 .wrapper {
 	width: 80%;
