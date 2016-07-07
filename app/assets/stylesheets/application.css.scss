@@ -7,12 +7,13 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 @import 'chosen';
+@import 'image-select';
 
-@import 'normalize.css.scss';
-@import 'global.css.scss';
-@import 'appointments.css.scss';
-@import 'profiles.css.scss';
-@import 'welcome.css.scss';
+@import 'normalize.scss';
+@import 'global.scss';
+@import 'appointments.scss';
+@import 'profiles.scss';
+@import 'welcome.scss';
 
 .alert-notice {
   @extend .alert-success;

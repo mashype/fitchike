@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery.image-select
 //= require chosen-jquery
 //= require messages
 //= require bootstrap-sprockets
