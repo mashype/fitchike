@@ -137,6 +137,8 @@ GEM
       rails (>= 3.2.0)
     masonry-rails (0.2.4)
       railties
+    meta-tags (2.1.0)
+      actionpack (>= 3.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mimemagic (0.3.0)
@@ -270,6 +272,7 @@ DEPENDENCIES
   letter_opener
   mailboxer
   masonry-rails (~> 0.2.4)
+  meta-tags
   paperclip (~> 4.3, >= 4.3.6)
   pg
   pry

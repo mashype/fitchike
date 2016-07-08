@@ -30,6 +30,8 @@ class ProfilesController < ApplicationController
       marker.lng profile_location.location.longitude
     end
 
+    prepare_meta_tags title: "Profiles", description: "Check out fitness buddies and trainers near you"
+
   end
 
   def show

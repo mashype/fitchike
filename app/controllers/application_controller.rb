@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :prepare_meta_tags, if: "request.get?"
   protect_from_forgery with: :exception
 
 
@@ -28,6 +29,33 @@ class ApplicationController < ActionController::Base
 			session[:longitude] = coords.longitude
 		end
 	end	
+
+  def prepare_meta_tags(options={})
+    site_name   = "Fitchike"
+    title       = [controller_name, action_name].join(" ")
+    description = "If you are looking to connect with a personal trainer or just finding a fitness buddy or a workout partner, find someone in your area that is looking to workout with you today"
+    image       = options[:image] || "your-default-image-url"
+    current_url = request.url
+
+    # Let's prepare a nice set of defaults
+    defaults = {
+      site:        "Fitchike",
+      title:       "Personalized Fitness",
+      description: "If you are looking to connect with a personal trainer or just finding a fitness buddy or a workout partner, find someone in your area that is looking to workout with you today",
+      keywords:    %w[fitchike workout gym yoga buddy fitness partner],
+      twitter: {
+        site_name: "fitchike",
+        site: '@fitchike',
+        card: 'summary',
+        description: description,
+        image: image
+      }
+    }
+
+    options.reverse_merge!(defaults)
+
+    set_meta_tags options
+  end
 
 end
 
