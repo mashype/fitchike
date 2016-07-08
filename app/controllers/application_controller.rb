@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_action :prepare_meta_tags, if: "request.get?"
   protect_from_forgery with: :exception
 
+  before_action :prepare_meta_tags, if: "request.get?"
 
   rescue_from ActiveRecord::RecordNotFound do
     flash[:warning] = 'Resource not found.'
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
         site_name: "fitchike",
         site: '@fitchike',
         card: 'summary',
-        description: description,
+        description: 'Fitchike Twitter page',
         image: image
       }
     }
