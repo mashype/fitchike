@@ -14,6 +14,7 @@ class AppointmentsController < ApplicationController
 		@hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
       marker.lat appointment.location.latitude
       marker.lng appointment.location.longitude
+      marker.infowindow appointment.title
     end
 
    	@avg_reviews = []

@@ -28,6 +28,7 @@ class ProfilesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@profile_locations) do |profile_location, marker|
       marker.lat profile_location.location.latitude
       marker.lng profile_location.location.longitude
+      marker.infowindow profile_location.profile.username
     end
 
     prepare_meta_tags title: "Profiles", description: "Check out fitness buddies and trainers near you"
