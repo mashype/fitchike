@@ -9,31 +9,58 @@ $red: #B11322;
   margin: 0 auto;
   width: 100%;
   .box {
-	  background: $light_gray;
-	  margin: 10px;
-	  width: 350px;
+	  background: $light_blue;
+	  margin: 5px;
+	  width: 175px;
 	  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
 	  border-radius: 7px;
 	  text-align: center;
 	  .panel-body {
-	 	  padding: 10px; 
+	 	  background: $blue;
+	 	  padding: 5px; 
+	 	  text-align: left;
+	  }
+	  .panel-heading {
+	 	  background: $dark_gray;
+	 	  padding: 5px; 
 	 	  text-align: left;
 	  }
 	  img {
 	 	  padding-left: 5px; 
 	 		padding-right: 5px;
-	  	width: 100%;
+	 		width: 90%;
 	  	height: auto;
+	  	border-radius: 10px;
 	  }
 	  h2 {
 	  	@include bold_font;
-	  	font-size: 14px;
+	  	font-size: 16px;
+	  	text-decoration: none;
 	  	margin: 0;
 		  text-align: center;
 	  	padding: 5px 5px;
-	  	color: #474747;
+	  	color: white;
 	  	a {
 				color: #474747;
+	  	}
+	  }
+	  .box_text {
+	  	font-size: 14px;
+	  	color: white;
+			padding: 2px;
+			margin: 0;
+	  }
+	  .map {
+	  	border-radius: 25px;
+			padding: 1px;
+			margin: 0
+	  }
+
+	  .stars {
+	  	img {
+				width: 15px;	 	  
+				padding-left: 1px; 
+	 			padding-right: 1px;
 	  	}
 	  }
 	}
@@ -60,7 +87,6 @@ $red: #B11322;
 		border: 2px solid $blue;
 		border-radius: .35rem;
 		}
-
 
 	button, .button:hover {
   	color: $blue;
