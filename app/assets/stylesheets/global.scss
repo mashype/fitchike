@@ -27,14 +27,20 @@ body {
   }
 
 .wrapper {
-	width: 85%;
-    margin: 0px;
+	width: 90%;
+    margin:  auto;
 }
 
 .wrapper_with_padding {
 	width: 90%;
 	margin: 0 auto;
 	padding: 3.5rem 0;
+}
+
+.page-header {
+    @include bold_font;
+    text-align: center;
+    margin: 3px;
 }
 
 .clearfix:before, .clearfix:after {
