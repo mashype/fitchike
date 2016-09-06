@@ -4,6 +4,7 @@
 	background-repeat: no-repeat;
 	background-position: top center;
 	width: 100%;
+	min-height: 500px;
 	display: table;
 	.banner_content {
 		display: table-cell;
@@ -72,7 +73,7 @@
 }
 
 #callouts {
-	background-image: url(image_path(callout_background));
+	background-color: black;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: top center;
@@ -81,16 +82,24 @@
 	vertical-align: middle;
 	h2 {
 		@include bold_font;
-		color: $blue;
+		color: $red;
+		font-size: 2.0em;
 		margin-bottom: 0;
 	}
+
 	i {
-		font-size: 4.5rem;
-		color: white;
-		padding: 3.0rem 2.5%;
+		font-size: 5.0rem;
+		color: $blue;
+		padding: 2.5rem 2.5%;
 	}
+
 	p {
 		color: white;
+		font-size: 1.5em;
+	}
+
+	a {
+    color: $red;
 	}
 }
 

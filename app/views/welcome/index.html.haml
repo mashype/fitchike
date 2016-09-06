@@ -11,6 +11,7 @@
 			= link_to "Get Signed Up Now", new_user_registration_path, class: "button"
 			%h2 BETA MODE
 
+
 #testimonial
 	.wrapper
 		%p.quote "It's so awesome to get a chance to switch up my trainers and trying out new stuff.  Love it!"
@@ -20,33 +21,37 @@
 	.wrapper
 		.row
 			.col-md-4
+				%i.fa.fa-sign-in
+				%h2= link_to "Sign Up", new_user_registration_path
+				%p It just takes a few moments to create your username to access the Fitchike platform.
+
+			.col-md-4
+				%i.fa.fa-certificate
+				%h2 Create Profile
+				%p Just tell us the types of workouts you like, your location and we  connect you with likeminded peers.
+
+			.col-md-4
 				%i.fa.fa-users
-				%h2 Choice
-				%p Find a Fitchike trainer that specialize in anything from free weights and interval training to yoga and pilates or anything in between.  Find a trainer that is tailored for your current workout routines to help keep you motivated and remember that you always have the freedom to mix it up whenever you want. 
-
-			.col-md-4
-				%i.fa.fa-trophy
-				%h2 Experience
-				%p All of our certified experts have a minimum of 5 years working in the health and fitness industry and you will be sure to get top notch talents.  Make sure that you review your trainers to make sure the community knows how awesome they really are.
-
-			.col-md-4
-				%i.fa.fa-money
-				%h2 Value
-				%p Don't get stuck into long term committments with traditional personal training sessions just to end up not going!  Our model lets you find new trainers all the time and only pay for appointments you book.  Use us as much or as little as you need to.
+				%h2 Connect
+				%p Create workouts to let people find you, or search for active workouts in your area to find partners.
 				
 #bottom_cta
 	.wrapper
 		%h2 Why are you not already signed up?  
 		%br/
-		%p You can checkout workout offerings in your area whenever you need to, and there is never any cost or committment to use us.  Fitchike helps connect people looking for new ways to stay fit with those who want to help!
-		%p Simply create an account to take a look at training offerings in your area today!
+		.row
+			.col-md-8.col-md-offset-2
+				%p Checkout workout offerings in your area whenever you need to, and there is never any cost or committment to use us.  Fitchike helps connect people looking for new ways to stay fit with those who want to help!
+				%p Its easy to create an account and find great partners in your area today!
 		%br/
-		.col-md-4.col-md-offset-4
-			= link_to "View Our Trainers", profiles_path, class: "button"
-		%br/
+		.row
+			.col-md-4.col-md-offset-4
+				= link_to "View Our Trainers", profiles_path, class: "button"
+		%br
+		%br
 
-%h2 FITCHIKE IS STILL IN BETA TESTING... 
-%h2 SO PLEASE LET US KNOW YOUR THOUGHTS
+		%h2 FITCHIKE IS STILL IN BETA TESTING... 
+		%h2 SO PLEASE LET US KNOW YOUR THOUGHTS
 
 :javascript
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

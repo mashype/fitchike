@@ -73,8 +73,6 @@
 	- flash.each do |key, value|
 		%div{:class => "alert alert-#{key}"}
 			= value
-	.page-header
-		%h1= yield :page_header
 	= yield
 
 %nav.navbar.navbar-default.navbar-fixed-bottom
