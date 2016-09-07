@@ -2,4 +2,4 @@
 	.controls
 		= f.association :certification, label_method: :cert_name, value_method: :id, label: false, include_blank: false, collection: Certification.order('cert_name')
 		= f.input :cert_year, label: false
-		= link_to_remove_association "remove", f
+		= link_to_remove_association "Remove Certification", f, class: "btn btn-danger"
