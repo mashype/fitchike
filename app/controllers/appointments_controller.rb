@@ -3,20 +3,7 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		if params[:search].present?
-			location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
-			@appointments = Appointment.includes(:location).where(location_id: location_ids).where(active: "TRUE").order("created_at DESC")
-    else
-			location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
-			@appointments = Appointment.includes(:location).where(location_id: location_ids).where(active: "TRUE").order("created_at DESC")
-    end
-
-		@hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
-      marker.lat appointment.location.latitude
-      marker.lng appointment.location.longitude
-      marker.infowindow appointment.title
-    end
-
+		
    	@avg_reviews = []
 	  for singleappointment in @appointments
       @reviews = Review.where(profile_id: singleappointment.profile.id)
@@ -26,6 +13,21 @@ class AppointmentsController < ApplicationController
         @avg_reviews << @reviews.average(:rating).round(2)
       end
 		end
+
+		if params[:search].present?
+      location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
+      @appointments = Appointment.includes(:location).where(location_id: location_ids)
+    else
+      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
+      @appointments = Appointment.includes(:location).where(location_id: location_ids)
+    end
+
+    @hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
+      marker.lat appointment.location.latitude
+      marker.lng appointment.location.longitude
+      marker.infowindow appointment.title
+    end
+
   end
 
 	def show
@@ -74,3 +76,4 @@ class AppointmentsController < ApplicationController
 		params.require(:appointment).permit(:title, :comments, :price, :end_date, :active, :length_id, :profile_id, :location_id)
 	end
 end
+

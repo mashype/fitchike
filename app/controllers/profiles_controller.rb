@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
-  
 
   def index
     @profiles = Profile.where(trainer: true)
@@ -16,6 +15,7 @@ class ProfilesController < ApplicationController
         @avg_reviews << @reviews.average(:rating).round(2)
       end
     end
+
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)

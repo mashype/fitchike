@@ -14,13 +14,14 @@
 							%a{ href: (url_for [profile])}
 								.box.panel.panel-default
 									.panel-heading
-										%h2= profile.username
+										%h2= profile.user.username
 									.panel-body
 										%img.img-rounded.center-block{alt: "Profile Picture", src: profile.avatar.url(:thumb)}/
 									.panel-footer
 										.stars
 											%p{class: "star-rating", dscore: @avg_reviews[i]}
 											%em= "#{@reviews.length} reviews"
+											
 
 				.col-md-4
 					%img{:style => "width: 100%;"}
