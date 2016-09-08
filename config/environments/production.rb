@@ -70,8 +70,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "localhost" }
   config.action_mailer.smtp_settings = {
       address: "smtp.gmail.com",
-      port: 465,
-      domain: "fitchike.com",
+      port: 587,
+      domain: "gmail.com",
       authentication: "plain",
       enable_starttle_auto: true,
       user_name: ENV["FMAIL_USERNAME"],
