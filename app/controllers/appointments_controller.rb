@@ -3,16 +3,19 @@ class AppointmentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		
-   	@avg_reviews = []
-	  for singleappointment in @appointments
+
+		@avg_reviews = []
+    for singleappointment in @appointments
       @reviews = Review.where(profile_id: singleappointment.profile.id)
+
       if @reviews.blank?
         @avg_reviews << 0
       else
         @avg_reviews << @reviews.average(:rating).round(2)
       end
-		end
+    end
+
+
 
 		if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)

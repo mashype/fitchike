@@ -64,20 +64,20 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
 
-  # Change email delivery to :smtp, :sendmail, :file, :test
+
+#      password: ENV["GMAIL_PASSWORD"]
+
+  #SMTP mailer info
+  config.action_mailer.default_url_options = { :host => 'localhost' }  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: "gmail.com",
-      authentication: "plain",
-      enable_starttle_auto: true,
-      user_name: ENV["GMAIL_USERNAME"],
-      password: ENV["GMAIL_PASSWORD"]
-  }
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => 'fitchike@gmail.com',
+  :password             => 'fitc3ike',
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  }
 
-  # needed for url mailing
-  config.action_mailer.default_url_options = { host: "http://www.fitchike.com" }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
