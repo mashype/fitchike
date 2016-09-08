@@ -74,8 +74,8 @@ Rails.application.configure do
       domain: "fitchike.com",
       authentication: "plain",
       enable_starttle_auto: true,
-      user_name: ENV["FMAIL_USERNAME"],
-      password: ENV["FMAIL_PASSWORD"]
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
   }
 
   # needed for url mailing
