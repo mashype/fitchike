@@ -67,14 +67,25 @@ Rails.application.configure do
   # needed for url mailing
   # Change email delivery to :smtp, :sendmail, :file, :test
 #  config.action_mailer.default_url_options = { host: "localhost" }
+#  config.action_mailer.delivery_method = :smtp
+#  config.action_mailer.smtp_settings = {
+#    tls: true,
+#    address:              ENV["EMAIL_URL"],
+#    port:                 465,
+#    domain:               ENV["EMAIL_DOMAIN"],
+#    user_name:            ENV["FMAIL_USERNAME"],
+#    password:             ENV["FMAIL_PASSWORD"],
+#    authentication:       'plain',
+#    enable_starttls_auto: true  }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     tls: true,
-    address:              ENV["EMAIL_URL"],
+    address:              "smtp.gmail.com",
     port:                 465,
-    domain:               ENV["EMAIL_DOMAIN"],
-    user_name:            ENV["FMAIL_USERNAME"],
-    password:             ENV["FMAIL_PASSWORD"],
+    domain:               "fitchike.com",
+    user_name:            "admin@fitchike.com",
+    password:             "fitc#ike",
     authentication:       'plain',
     enable_starttls_auto: true  }
 
