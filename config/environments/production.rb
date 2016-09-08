@@ -74,7 +74,7 @@ Rails.application.configure do
     address:              ENV["EMAIL_URL"],
     port:                 465,
     domain:               ENV["EMAIL_DOMAIN"],
-    user_name:            ENV["FMAIL_USER_NAME"],
+    user_name:            ENV["FMAIL_USERNAME"],
     password:             ENV["FMAIL_PASSWORD"],
     authentication:       'plain',
     enable_starttls_auto: true  
