@@ -66,18 +66,19 @@ Rails.application.configure do
 
   # Change email delivery to :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "localhost" }
   config.action_mailer.smtp_settings = {
-      address: "smtp.fitchike.com",
+      address: "smtp.gmail.com",
       port: 587,
       domain: "fitchike.com",
       authentication: "plain",
       enable_starttle_auto: true,
-      user_name: ENV["FMAIL_USERNAME"],
-      password: ENV["FMAIL_PASSWORD"]
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
   }
 
   # needed for url mailing
-  config.action_mailer.default_url_options = { host: "http://www.fitchike.com" }
+  
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
