@@ -4,6 +4,17 @@ class AppointmentsController < ApplicationController
 
 	def index
 
+
+#		@appointments = Appointment.all
+
+		if params[:search].present?
+      location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
+      @appointments = Appointment.includes(:location).where(location_id: location_ids)
+    else
+      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
+      @appointments = Appointment.includes(:location).where(location_id: location_ids)
+    end
+
 		@avg_reviews = []
     for singleappointment in @appointments
       @reviews = Review.where(profile_id: singleappointment.profile.id)
@@ -13,16 +24,6 @@ class AppointmentsController < ApplicationController
       else
         @avg_reviews << @reviews.average(:rating).round(2)
       end
-    end
-
-
-
-		if params[:search].present?
-      location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
-      @appointments = Appointment.includes(:location).where(location_id: location_ids)
-    else
-      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
-      @appointments = Appointment.includes(:location).where(location_id: location_ids)
     end
 
     @hash = Gmaps4rails.build_markers(@appointments) do |appointment, marker|
