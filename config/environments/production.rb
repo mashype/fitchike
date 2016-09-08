@@ -76,9 +76,8 @@ Rails.application.configure do
       password: ENV["GMAIL_PASSWORD"]
   }
 
-  # needed for url mailing & devise gem
-  # config.action_mailer.default_url_options = { host: "http://www.fitchike.com", port: 3000 }
-
+  # needed for url mailing
+  config.action_mailer.default_url_options = { host: "http://fitchike.com" }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
