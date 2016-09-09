@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :posts
   get 'welcome/about' => 'welcome#about'
   get 'welcome/faq' => 'welcome#faq'
   get 'welcome/users' => 'welcome#users'
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
   resources :appointments do
     resources :confirmations
   end
+
+  
 
   resources :certifications
   resources :charges
@@ -31,6 +34,10 @@ Rails.application.routes.draw do
   resources :location_types
   resources :locations
   resources :messages, only: [:new, :create]
+
+  resources :posts do 
+    resources :blogcomments
+  end
 
   resources :profiles do 
     resources :reviews, except: [:show, :index]

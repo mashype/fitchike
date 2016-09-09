@@ -1,0 +1,6 @@
+#main_content
+	- @posts.each do |post|
+		.post_wrapper
+			%h2.title= link_to post.title, post
+			%p Posted By: #{post.user.username}
+			%p.date= post.created_at.strftime("%B %d, %Y")
