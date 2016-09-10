@@ -15,7 +15,8 @@
 					%span.number 1
 					User Info
 				= f.association :gender, label_method: :gender, label: false, value_method: :id, include_blank: false
-				= f.input :trainer, label: "Public", hint: 'Do you want to make your profile public?'
+				= f.input :private, label: "Make Profile Private", hint: 'Do you want to hide your profile?'
+				= f.input :trainer, label: "Are you a trainer", hint: 'Do you want to train clients?'
 				%br/
 			%fieldset
 				%legend

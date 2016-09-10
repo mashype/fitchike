@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @profiles = Profile.where(trainer: true)
+    @profiles = Profile.where(private: false)
 
     @avg_reviews = []
     for singleprofile in @profiles
