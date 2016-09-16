@@ -1,3 +1,4 @@
+
 !!! 5
 
 %html
@@ -7,92 +8,103 @@
 		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
 		= javascript_include_tag 'application', 'data-turbolinks-track' => true
 		%meta{:content => "initial-scale = 1.0,maximum-scale = 1.0", :name => "viewport"}
-		%link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+		%link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}
 
-%body
-	%nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
-		.container-fluid
-			.navbar-header
-				%button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-					%span.sr-only Toggle navigation
-					%span.icon-bar
-					%span.icon-bar
-					%span.icon-bar
-				%a.navbar-brand
-					= link_to image_tag('fitchlogo.png'), root_path
-			#navbar.navbar-collapse.collapse
-				%ul.nav.navbar-nav.navbar-right
-					%li.active
-						=link_to "HOME", root_path
-						%span.sr-only (current)	
-
-					%li.dropdown	
-						%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-							ABOUT
-							%span.caret
-						%ul.dropdown-menu
-							%li
-								=link_to "VIEW TRAINERS", profiles_path	
-							%li
-								=link_to "ABOUT FITCHIKE", welcome_about_path	
-							%li
-								=link_to "FAQ", welcome_faq_path	
-							%li
-								=link_to "TERMS OF USE", welcome_terms_path												
-							%li.divider{:role => "separator"}
-							%li
-								= link_to "FOR CLIENTS", welcome_users_path
-							%li
-								= link_to "FOR TRAINERS", welcome_trainers_path
-
-					%li
-						=link_to "BLOG", posts_path
-
-					- if user_signed_in? && Profile.exists?(user_id: current_user)
-
-						%li.dropdown	
-							%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-								MESSAGES
+	%body
+		%nav.navbar.navbar-inverse.navbar-fixed-top
+			.container-fluid
+				.navbar-header
+					%button.navbar-toggle{"data-target" => "#myNavbar", "data-toggle" => "collapse", :type => "button"}
+						%span.icon-bar
+						%span.icon-bar
+						%span.icon-bar
+					%a.navbar-brand
+						= link_to image_tag('fitchlogo.png'), root_path
+				#myNavbar.collapse.navbar-collapse
+					%ul.nav.navbar-nav
+						%li.active
+							=link_to "Home", root_path
+						%li.dropdown
+							%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+								About
 								%span.caret
 							%ul.dropdown-menu
 								%li
-									=link_to "VIEW MESSAGES", conversations_path	
+									=link_to "VIEW TRAINERS", profiles_path 
 								%li
-									=link_to "NEW MESSAGE FITCHIKE", new_message_path	
-
-						%li.dropdown	
-							%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-								ACCOUNT	
-								%span.caret
-							%ul.dropdown-menu
+									=link_to "ABOUT FITCHIKE", welcome_about_path 
 								%li
-									= link_to "CREATE APPOINTMENT", new_appointment_path
+									=link_to "FAQ", welcome_faq_path  
+								%li
+									=link_to "TERMS OF USE", welcome_terms_path                       
 								%li.divider{:role => "separator"}
 								%li
-									= link_to "VIEW MY PROFILE", profile_path(current_user.profile.id)
+									= link_to "FOR CLIENTS", welcome_users_path
 								%li
-									= link_to "MESSAGES", conversations_path
-								%li
-									= link_to "EDIT ACCOUNT", edit_user_registration_path			
-								%li
-									= link_to "SIGN OUT", destroy_user_session_path, method: :delete 
+									= link_to "FOR TRAINERS", welcome_trainers_path
 
 
-
-
-					- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
-						%li					
-							= link_to "COMPLETE PROFILE", new_profile_path		
 						%li
-							= link_to "SIGN OUT", destroy_user_session_path, method: :delete 			
-					- else
-						%li
-							=link_to "SIGN IN", new_user_session_path		
+							=link_to "Blog", posts_path
+
+
+						- if user_signed_in? && Profile.exists?(user_id: current_user)
+
+							%li.dropdown  
+								%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+									Messages
+									%span.caret
+								%ul.dropdown-menu
+									%li
+										=link_to "Messages", conversations_path  
+									%li
+										=link_to "New Message", new_message_path 
+
+							%li.dropdown  
+								%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+									Account 
+									%span.caret
+								%ul.dropdown-menu
+									%li
+										= link_to "Create Appointment", new_appointment_path
+									%li.divider{:role => "separator"}
+									%li
+										= link_to "View Profile", profile_path(current_user.profile.id)
+									%li
+										= link_to "Edit Account", edit_user_registration_path     
+
+
+					%ul.nav.navbar-nav.navbar-right
+
+						- if user_signed_in? && Profile.exists?(user_id: current_user)
+
+							%li
+								= link_to "SIGN OUT", destroy_user_session_path, method: :delete
+
+						- elsif user_signed_in?  && !Profile.exists?(user_id: current_user)
+
+							%li         
+								= link_to "COMPLETE PROFILE", new_profile_path    
+							%li
+								= link_to "SIGN OUT", destroy_user_session_path, method: :delete      
+
+						- else 
+
+							%li
+								= link_to new_user_session_path do
+									%span.glyphicon.glyphicon-user Sign In
+
+							%li
+								= link_to new_user_session_path do
+									%span.glyphicon.glyphicon-log-in Login
+
+		.container
 
 	- flash.each do |key, value|
 		%div{:class => "alert alert-#{key}"}
 			= value
 	= yield
+
 
 %nav.navbar.navbar-default.navbar-fixed-bottom
 	.container
@@ -125,6 +137,4 @@
 
 		ga('create', 'UA-77303912-1', 'auto');
 		ga('send', 'pageview');
-
-
 
