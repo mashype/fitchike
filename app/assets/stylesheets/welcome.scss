@@ -29,6 +29,9 @@
     	border: 4px solid $blue;
 		}
 
+		img {
+			padding-top: 80px;
+		}
 		
 		h1 {
 			@include bold_font;
@@ -36,6 +39,11 @@
 			font-size: 3.5rem;
 			margin: 0;
 		}
+
+		h2 {
+			text-align: center;
+		}
+
 		tag {
 			@include bold_font;
 			color: white;
@@ -84,6 +92,7 @@
 		@include bold_font;
 		color: $red;
 		font-size: 2.0em;
+		text-align: center;
 		margin-bottom: 0;
 	}
 
@@ -184,6 +193,7 @@ button, .button:hover {
 		@include bold_font;
 		color: $red;
 		font-size: 2.5rem;
+		text-align: center;
 		margin: 0;
 	}
 	p {
