@@ -3,6 +3,12 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
+
+    set_meta_tags   title: "Fitchike - Find A Partner",
+                    keywords: "fitness workout healthy trainer gym yoga pilates social",
+                    description: "Fitness made social, get started today"
+
+
     @profiles = Profile.where(:private => false)
 
     @avg_reviews = []
