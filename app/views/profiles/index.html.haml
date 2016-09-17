@@ -5,38 +5,38 @@
 
 .wrapper
 	- page_header "Find a gym buddy in your area and get started"
-	.panel.panel-default
-		.panel-body
-			.row
-				.col-md-8
-					#profiles.transitions-enabled
-						- @profiles.each_with_index do |profile, i|
-							%a{ href: (url_for [profile])}
-								.box.panel.panel-default
-									.panel-heading
-										%h2= profile.user.username
-									.panel-body
-										%img.img-rounded.center-block{alt: "Profile Picture", src: profile.avatar.url(:thumb)}/
-									.panel-footer
-										.stars
-											%p{class: "star-rating", dscore: @avg_reviews[i]}
-											%em= "#{@reviews.length} reviews"
-											
+	#profile_background
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-8
+						#profiles.transitions-enabled
+							- @profiles.each_with_index do |profile, i|
+								%a{ href: (url_for [profile])}
+									.box.panel.panel-default
+										.panel-heading
+											%h2= profile.user.username
+										.panel-body
+											%img.img-rounded.center-block{alt: "Profile Picture", src: profile.avatar.url(:thumb)}/
+										.panel-footer
+											.stars
+												%p{class: "star-rating", dscore: @avg_reviews[i]}
+												%em= "#{@reviews.length} reviews"
+												
 
-				.col-md-4
-					%img{:style => "width: 100%;"}
-						#map{:style => "width: 100%; height: 400px;"}	
-					%p 
-					= form_tag profiles_path, :method => :get do
-						%p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
-						%p= submit_tag "Refresh Search", :search => nil
-					%br/
-			.row
-				%br/
-				.col-md-6
-					= link_to "Create New Appointment", new_appointment_path, class: "button"
-				.col-md-6
-					= link_to "Check Out Pro Appointments", appointments_path, class: "button"
+					.col-md-4
+						%img{:style => "width: 100%;"}
+							#map{:style => "width: 100%; height: 400px;"}	
+						%p 
+						= form_tag profiles_path, :method => :get do
+							%p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
+							%p= submit_tag "Refresh Search", :search => nil
+							%br
+						%p
+						= link_to "Create Appointment", new_appointment_path, class: "button"
+						%p
+						= link_to "Book A Trainer", appointments_path, class: "button"
+
 
 
 :javascript

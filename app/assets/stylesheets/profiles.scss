@@ -4,6 +4,25 @@ $blue: #0B5BAE;
 $red: #B11322;
 
 
+#profile_background {
+	margin-top: 70px;
+
+	button, .button {
+		@include bold_font;
+		padding: 1rem 3.5rem;
+    font-size: 12px;
+		border: 2px solid $blue;
+		border-radius: .35rem;
+		}
+
+	button, .button:hover {
+  	color: $blue;
+  	background-color: white;
+  	border: 2px solid $blue;
+  	border-color: $blue;
+  }  
+
+}
 
 #profiles {
   margin: 0 auto;

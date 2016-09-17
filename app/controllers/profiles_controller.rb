@@ -42,6 +42,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
+
     @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
     @appointments = Appointment.where(profile_id: @profile.id).order("created_at DESC")    
 
