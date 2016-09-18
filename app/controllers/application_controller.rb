@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
       site:        "Fitchike",
       title:       "Personalized Fitness",
       description: "If you are looking to connect with a personal trainer or just finding a fitness buddy or a workout partner, find someone in your area that is looking to workout with you today",
-      keywords:    %w[fitchike workout gym yoga buddy fitness partner],
+      keywords:    "fitness workout healthy trainer gym yoga pilates social san diego personal training",
       twitter: {
         site_name: "fitchike",
         site: '@fitchike',
