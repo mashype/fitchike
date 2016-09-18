@@ -1,15 +1,16 @@
-.wrapper
-	.row
-		.containter
-			.col-md-6.col-md-offset-3
-				= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-					.form-style-5
-						%form
-							%fieldset
-								%legend
-									Sign Into Your Account
-								= f.input :email, required: false, autofocus: true
-								= f.input :password, required: false
-								= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-							%input{:type => "submit", :value => "Log In"}/
-							= render "devise/shared/links"
+#devise
+	.wrapper
+		.row
+			.containter
+				.col-md-6.col-md-offset-3
+					= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+						.form-style-5
+							%form
+								%fieldset
+									%legend
+										Sign Into Your Account
+									= f.input :email, placeholder: "email address", label: false, required: false, autofocus: true
+									= f.input :password, placeholder: "password", label: false, required: false
+									= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+								%input{:type => "submit", :value => "Log In"}/
+								= render "devise/shared/links"
