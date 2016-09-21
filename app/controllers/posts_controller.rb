@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    set_meta_tags   title: @post.title,
+    set_meta_tags   title: @post.title
   end
 
   def new
