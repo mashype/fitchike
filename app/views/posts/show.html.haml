@@ -3,7 +3,7 @@
 		%h1.title= @post.title
 		%p.date
 			Submitted #{time_ago_in_words(@post.created_at)} Ago
-			- if user_signed_in?
+			- if current_user.admin == true
 				|
 				= link_to 'Edit', edit_post_path(@post) 
 				|
