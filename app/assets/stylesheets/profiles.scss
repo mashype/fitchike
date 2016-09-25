@@ -5,7 +5,6 @@ $red: #B11322;
 
 
 #profile_background {
-	margin-top: 70px;
 
 	button, .button {
 		@include bold_font;
@@ -86,7 +85,6 @@ $red: #B11322;
 }
 
 #profile_show {
-	padding-top: 70px;
 	margin: auto;
 	width: 90%;
 	color: $dark_gray;
